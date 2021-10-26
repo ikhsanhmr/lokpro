@@ -14,3 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'frontend.template.frontend')->name('frontend');
+Route::view('/dashboard', 'backend.backend')->name('dashboard');
