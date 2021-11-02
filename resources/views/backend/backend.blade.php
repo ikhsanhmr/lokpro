@@ -25,7 +25,7 @@
             <div class="sidebar-header">
                 <div class="d-flex justify-content-between">
                     <div class="logo">
-                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                        <a href="index.html"><img src="/backend/images/logo/logo.png" alt="Logo" srcset=""></a>
                     </div>
                     <div class="toggler">
                         <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -557,7 +557,7 @@
                                                 <td class="col-3">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar avatar-md">
-                                                            <img src="assets/images/faces/5.jpg">
+                                                            <img src="backend/images/faces/5.jpg">
                                                         </div>
                                                         <p class="font-bold ms-3 mb-0">Si Cantik</p>
                                                     </div>
@@ -570,7 +570,7 @@
                                                 <td class="col-3">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar avatar-md">
-                                                            <img src="assets/images/faces/2.jpg">
+                                                            <img src="backend/images/faces/2.jpg">
                                                         </div>
                                                         <p class="font-bold ms-3 mb-0">Si Ganteng</p>
                                                     </div>
@@ -594,7 +594,7 @@
                         <div class="card-body py-4 px-5">
                             <div class="d-flex align-items-center">
                                 <div class="avatar avatar-xl">
-                                    <img src="assets/images/faces/1.jpg" alt="Face 1">
+                                    <img src="backend/images/faces/1.jpg" alt="Face 1">
                                 </div>
                                 <div class="ms-3 name">
                                     <h5 class="font-bold">John Duck</h5>
@@ -610,7 +610,7 @@
                         <div class="card-content pb-4">
                             <div class="recent-message d-flex px-4 py-3">
                                 <div class="avatar avatar-lg">
-                                    <img src="assets/images/faces/4.jpg">
+                                    <img src="backend/images/faces/4.jpg">
                                 </div>
                                 <div class="name ms-4">
                                     <h5 class="mb-1">Hank Schrader</h5>
@@ -619,7 +619,7 @@
                             </div>
                             <div class="recent-message d-flex px-4 py-3">
                                 <div class="avatar avatar-lg">
-                                    <img src="assets/images/faces/5.jpg">
+                                    <img src="backend/images/faces/5.jpg">
                                 </div>
                                 <div class="name ms-4">
                                     <h5 class="mb-1">Dean Winchester</h5>
@@ -628,7 +628,7 @@
                             </div>
                             <div class="recent-message d-flex px-4 py-3">
                                 <div class="avatar avatar-lg">
-                                    <img src="assets/images/faces/1.jpg">
+                                    <img src="backend/images/faces/1.jpg">
                                 </div>
                                 <div class="name ms-4">
                                     <h5 class="mb-1">John Dodol</h5>
