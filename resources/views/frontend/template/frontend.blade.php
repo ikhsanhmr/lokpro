@@ -52,7 +52,7 @@
               <li class="nav-item px-2"><a class="nav-link fw-medium" href="#pricing">Career tips</a></li>
             </ul>
             <form class="ps-lg-5">
-              <button class="btn btn-lg btn-primary rounded-pill bg-gradient order-0" type="submit">Sign In</button>
+              <a href="{{ route('login') }}" class="btn btn-lg btn-primary rounded-pill bg-gradient order-0" type="submit">Sign In</a>
             </form>
           </div>
         </div>

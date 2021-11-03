@@ -36,6 +36,15 @@
                 <ul class="menu">
                     <li class="sidebar-title">Menu</li>
 
+                    <li class="sidebar-item">
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button type="submit" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Logout Sementara</span>
+                            </button>
+                        </form>
+                    </li>
                     <li class="sidebar-item active ">
                         <a href="index.html" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
