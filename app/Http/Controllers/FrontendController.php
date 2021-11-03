@@ -9,4 +9,9 @@ class FrontendController extends Controller
     public function index(){
         return view('frontend.template.frontend');
     }
+
+    public function test()
+    {
+        return 'oke';
+    }
 }
