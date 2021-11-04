@@ -2,7 +2,7 @@
     <div class="sidebar-header">
         <div class="d-flex justify-content-between">
             <div class="logo">
-                <a href="/profile"><img src="/backend/images/logo/logo.png" alt="Logo" srcset=""></a>
+                <a href="/company/profile"><img src="/backend/images/logo/logo.png" alt="Logo" srcset=""></a>
             </div>
             <div class="toggler">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -43,10 +43,13 @@
         </li>
 
         <li class="sidebar-item">
-            <a href="/logout" class='sidebar-link'>
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Logout</span>
-            </a>
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button type="submit" class='sidebar-link btn btn-transparent'>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout Sementara</span>
+                </button>
+            </form>
         </li>
     </ul>
 </div>
