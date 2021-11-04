@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -16,8 +17,14 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::view('/', 'frontend.template.frontend')->name('frontend');
-Route::middleware('auth')->group(function(){
-    Route::view('/dashboard', 'backend.backend')->name('dashboard');
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::middleware('role:jobseeker')->group(function(){
+        Route::view('jobseeker/dashboard', 'backend.backend')->name('jobseeker.dashboard');
+    });
+    Route::middleware('role:company')->group(function(){
+        Route::view('company/dashboard', 'backend.backend')->name('company.dashboard');
+    });
 });
 
 Auth::routes();

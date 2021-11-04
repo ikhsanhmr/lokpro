@@ -37,6 +37,21 @@
                         @enderror
                     </div>
                     <div class="input-group mb-3">
+                        <select name="role" id="role" class="form-control @error('role') is-invalid @enderror">
+                            <option selected disabled>Select role</option>
+                            <option value="jobseeker">Jobseeker</option>
+                            <option value="company">Company</option>
+                        </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user-tag"></span>
+                            </div>
+                        </div>
+                        @error('role')
+                        <span class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-3">
                         <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -56,16 +71,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-8">
+                        {{-- <div class="col-8">
                             <div class="icheck-primary">
                                 <input type="checkbox" id="agreeTerms" name="terms" value="agree">
                                 <label for="agreeTerms">
                                     I agree to the <a href="#">terms</a>
                                 </label>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- /.col -->
-                        <div class="col-4">
+                        <div class="col">
                             <button type="submit" class="btn btn-primary btn-block">Register</button>
                         </div>
                         <!-- /.col -->
@@ -84,7 +99,10 @@
                     </a>
                 </div> --}}
 
-                <a href="{{ route('login') }}" class="text-center">I already have a account</a>
+                <div class="mt-4">
+                    Sudah punya akun ?
+                    <a href="{{ route('login') }}" class="text-center">Masuk</a>
+                </div>
             </div>
             <!-- /.form-box -->
         </div>
