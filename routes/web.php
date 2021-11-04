@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BackendController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +20,11 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::view('/', 'frontend.template.frontend')->name('frontend');
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::view('/dashboard', 'backend.backend')->name('dashboard');
 });
 
 Auth::routes();
+// BACKEND Marthin
+Route::get('/dashboard', [BackendController::class, 'index']);
+Route::get('/profile', [BackendController::class, 'profile']);
