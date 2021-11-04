@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+            return Auth::user()->role == 'jobseeker' ? redirect(route('jobseeker.dashboard')) : redirect(route('company.dashboard'));
         }
 
         return $next($request);
