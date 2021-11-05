@@ -2,7 +2,7 @@
 
 @section('content')
 
-<body class="hold-transition register-page">
+    <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
             <a href="{{ route('frontend') }}"><b>Lok</b>Pro</a>
@@ -109,12 +109,5 @@
         <!-- /.card -->
     </div>
     <!-- /.register-box -->
-
-    <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
-</body>
+    </body>
 @endsection
