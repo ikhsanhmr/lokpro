@@ -5,6 +5,9 @@ use App\Http\Controllers\BackendController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\PostingLowonganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +35,11 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Auth::routes();
+// BACKEND Marthin
+Route::get('/dashboard', [BackendController::class, 'index']);
+Route::get('/profile', [BackendController::class, 'profile']);
+
+// BACKEND LANA
+Route::middleware('auth')->group(function(){
+    Route::resource('/lowongan', PostingLowonganController::class);
+});
