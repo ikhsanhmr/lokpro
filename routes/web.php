@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\PostingLowonganController;
+//use App\Http\Controllers\PostingLowonganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +41,5 @@ Route::get('/profile', [BackendController::class, 'profile']);
 
 // BACKEND LANA
 Route::middleware('auth')->group(function(){
-    Route::resource('/lowongan', PostingLowonganController::class);
+//    Route::resource('/lowongan', PostingLowonganController::class);
 });
