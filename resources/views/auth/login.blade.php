@@ -1,6 +1,7 @@
 @extends('auth.layouts.app')
 
 @section('content')
+
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
@@ -26,7 +27,8 @@
                         @enderror
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password">
+                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                            placeholder="Password" name="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -36,19 +38,20 @@
                         <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="row">
-                        <div class="col-8">
+                    
+                    <div>
+                        <div class="col">
                             <div class="icheck-primary">
-                                <input type="checkbox" name="remember" id="remember" {{
-                                    old('remember') ? 'checked' : '' }}>
+                                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : ''
+                                    }}>
                                 <label for="remember">
-                                    Remember Me
+                                    Ingat saya
                                 </label>
                             </div>
                         </div>
                         <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -65,12 +68,17 @@
                 </div> --}}
                 <!-- /.social-auth-links -->
 
-                <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
-                </p>
-                <p class="mb-0">
-                    <a href="{{ route('register') }}" class="text-center">Register</a>
-                </p>
+                <div class="text-center mt-4">
+                    <p class="mb-1">
+                        <a href="forgot-password.html">Lupa Password ?</a>
+                    </p>
+
+                    <p class="mb-0">
+                        Belum Terdaftar ?
+                        <a href="{{ route('register') }}" class="text-center">Buat Akun</a>
+                    </p>
+
+                </div>
             </div>
             <!-- /.login-card-body -->
         </div>

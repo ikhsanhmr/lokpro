@@ -2,7 +2,7 @@
 
 @section('content')
 
-<body class="hold-transition register-page">
+    <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
             <a href="{{ route('frontend') }}"><b>Lok</b>Pro</a>
@@ -160,5 +160,5 @@
         <!-- /.card -->
     </div>
     <!-- /.register-box -->
-</body>
+    </body>
 @endsection
