@@ -21,8 +21,17 @@ use App\Http\Controllers\PostingLowonganController;
 */
 
 Route::view('/', 'frontend.template.frontend')->name('frontend');
-Route::middleware('auth')->group(function () {
-    Route::view('/dashboard', 'backend.backend')->name('dashboard');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::middleware('role:jobseeker')->group(function () {
+        Route::view('jobseeker/dashboard', 'backend.backend')->name('jobseeker.dashboard');
+    });
+    Route::middleware('role:company')->group(function () {
+        Route::get('/company/dashboard', [BackendController::class, 'index']);
+    });
+    Route::middleware('role:company')->group(function () {
+        Route::get('/company/profile', [BackendController::class, 'profile']);
+    });
 });
 
 Auth::routes();
