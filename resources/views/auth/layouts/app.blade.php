@@ -13,6 +13,15 @@
     <link rel="stylesheet" href="{{ asset('backend/assetAuth/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('backend/assetAuth/dist/css/adminlte.min.css') }}">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="/auth/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    
+    <!-- jQuery -->
+    <script src="/auth/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/auth/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/auth/dist/js/adminlte.min.js"></script>
 </head>
     @yield('content')
 </html>
