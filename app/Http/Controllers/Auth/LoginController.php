@@ -19,7 +19,6 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        return Auth::user()->role == 'jobseeker' ? '/jobseeker/dashboard': '/company/dashboard';
+        return Auth::user()->role == 'jobseeker' ? '/jobseeker/dashboard' : '/company/dashboard';
     }
-
 }

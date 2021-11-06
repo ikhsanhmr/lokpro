@@ -1,11 +1,10 @@
 
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\BackendController;
+use App\Http\Controllers\company\DashboardController;
+use App\Http\Controllers\company\ProfilController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +24,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::view('jobseeker/dashboard', 'backend.backend')->name('jobseeker.dashboard');
     });
     Route::middleware('role:company')->group(function () {
-        Route::get('/company/dashboard', [BackendController::class, 'index']);
-    });
-    Route::middleware('role:company')->group(function () {
-        Route::get('/company/profile', [BackendController::class, 'profile']);
+        Route::get('/company/dashboard', [DashboardController::class, 'index']);
+        Route::get('/company/profile', [ProfilController::class, 'index']);
+        Route::post('/company/profile', [ProfilController::class, 'edit']);
+        Route::post('/company/sosmed', [ProfilController::class, 'sosmed']);
+        Route::post('/company/email', [ProfilController::class, 'email']);
+        Route::post('/company/contact', [ProfilController::class, 'contact']);
     });
 });
 

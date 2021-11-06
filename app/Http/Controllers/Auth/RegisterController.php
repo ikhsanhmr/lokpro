@@ -45,7 +45,7 @@ class RegisterController extends Controller
 
     public function redirectTo()
     {
-        return Auth::user()->role == 'jobseeker' ? '/jobseeker/dashboard': '/company/dashboard';
+        return Auth::user()->role == 'jobseeker' ? '/jobseeker/dashboard' : '/company/dashboard';
     }
 
     /**
@@ -59,7 +59,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'role' => [ 'required', 'string', Rule::in(['company','jobseeker'])],
+            'role' => ['required', 'string', Rule::in(['company', 'jobseeker'])],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -77,6 +77,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'role' => $data['role'],
             'password' => Hash::make($data['password']),
+            'job_location' => '',
+            'jumlah_pekerja' => '',
+            'company_location' => '',
+            'company_culture' => '',
+            'sosmed' => '||',
         ]);
     }
 }

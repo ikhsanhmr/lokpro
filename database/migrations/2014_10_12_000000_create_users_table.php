@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->string('company_location');
             $table->string('company_culture');
             $table->string('sosmed');
-            $table->string('image');
             $table->rememberToken();
             $table->timestamps();
         });
