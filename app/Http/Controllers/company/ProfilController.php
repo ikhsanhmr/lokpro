@@ -7,6 +7,7 @@ use App\Models\Data_user;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class ProfilController extends Controller
@@ -97,6 +98,29 @@ class ProfilController extends Controller
         // update email
         $user->where('id', '=', user()->id)->update([
             'email' => $req->email,
+        ]);
+
+        return redirect('/company/profile')->with('berhasil', 'Successfully updated email');
+    }
+
+    public function logo(Request $req)
+    {
+        $dtuser = new Data_user();
+        // validasi email
+        $req->validate([
+            'logo' => 'required|image',
+        ]);
+
+        $filename = $req->file('logo')->hashName();
+
+        if ($filename != user()->logo) {
+            File::delete('backend/images/logocompany/' . user()->logo);
+        }
+        $logo = $req->file('logo')->move('backend/images/logocompany', $filename);
+
+        // update email
+        $dtuser->where('user_id', '=', user()->id)->update([
+            'logo' => $logo->getFilename(),
         ]);
 
         return redirect('/company/profile')->with('berhasil', 'Successfully updated email');

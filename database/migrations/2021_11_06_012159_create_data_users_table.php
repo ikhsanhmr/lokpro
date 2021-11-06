@@ -21,6 +21,7 @@ class CreateDataUsersTable extends Migration
             $table->string('company_location');
             $table->string('company_culture');
             $table->string('sosmed');
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

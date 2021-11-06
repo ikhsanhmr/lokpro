@@ -8,11 +8,18 @@
                     <div class="card-header">
                         <div class="bg-image p-5 text-center shadow-1-strong rounded text-white" style="background-image: url('https://mdbootstrap.com/img/new/slides/003.jpg');">
                             <h1 class="mb-3 h2 text-light">{{ user()->name }}</h1>
+                            <img class="p-2" height="60px" width="60px" src="/backend/images/logocompany/{{ user()->logo }}" alt="logo">
                             <p>{{ user()->email; }}</p>
                             <a target="_blank" href="@if($sosmed[0]) //{{ $sosmed[0] }} @else //facebook.com @endif"><i class="text-white fab fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a target="_blank" href="@if($sosmed[1]) //{{ $sosmed[1] }} @else //instagram.com @endif"> <i class="text-white fab fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a target="_blank" href="@if($sosmed[2]) //{{ $sosmed[2] }} @else //twitter.com @endif"> <i class="text-white fab fa-twitter"></i></a>
                         </div>
+                        @error('logo')
+                        <div class="alert alert-danger alert-dismissible show fade">
+                            Failed upload logo, {{ $message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @enderror
                         @error('email')
                         <div class="alert alert-danger alert-dismissible show fade">
                             Failed! {{ $message }}
@@ -70,6 +77,30 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <h3 class="text-center">Logo</h3>
+                                <form class="form form-horizontal mt-3" action="/company/logo" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-1 mb-2   ">
+                                                <img class="logo-preview" height="60px" width="60px" src="/backend/images/logocompany/{{ user()->logo }}" alt="logo">
+                                            </div>
+                                            <div class="col-md-8 form-group mt-2">
+                                                <input type="file" id="logo" class="form-control @error('logo') is-invalid @enderror" name="logo" onchange="previewLogo()">
+                                                @error('logo')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-3 form-group mt-2">
+                                                <button type="submit" class="btn btn-primary me-1 mb-1">Save Logo</button>
+                                                <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <h3 class="text-center mt-5">Company Data</h3>
                                 <form class="form mt-3" action="/company/profile" method="POST">
                                     @csrf
                                     <div class="row">

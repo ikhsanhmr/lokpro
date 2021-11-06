@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/company/sosmed', [ProfilController::class, 'sosmed']);
         Route::post('/company/email', [ProfilController::class, 'email']);
         Route::post('/company/contact', [ProfilController::class, 'contact']);
+        Route::post('/company/logo', [ProfilController::class, 'logo']);
     });
 });
 

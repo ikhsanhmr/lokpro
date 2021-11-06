@@ -89,6 +89,7 @@ class RegisterController extends Controller
         $data_user->company_location = '';
         $data_user->company_culture = '';
         $data_user->sosmed = '||';
+        $data_user->logo = 'default.jpg';
         $data_user->save();
 
         return $val;
