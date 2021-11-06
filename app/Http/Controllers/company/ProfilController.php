@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\company;
 
 use App\Http\Controllers\Controller;
+use App\Models\Data_user;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,10 +32,15 @@ class ProfilController extends Controller
             'company_culture' => 'required'
         ]);
 
-        // update to user table
-        $user = new User();
+        // update to users table
+        $user = new user();
         $user->where('id', '=', user()->id)->update([
-            'name' => $req->name,
+            'name' => $req->name
+        ]);
+
+        // update to data_users table
+        $dtuser = new Data_user();
+        $dtuser->where('user_id', '=', user()->id)->update([
             'job_location' => $req->job_location,
             'jumlah_pekerja' => $req->jumlah_pekerja,
             'company_location' => $req->company_location,
@@ -49,8 +55,8 @@ class ProfilController extends Controller
         // update sosmed
         $val = [$req->facebook, $req->instagram, $req->twitter];
         $sosmed = implode('|', $val);
-        $user = new User();
-        $user->where('id', '=', user()->id)->update([
+        $dtuser = new Data_user();
+        $dtuser->where('user_id', '=', user()->id)->update([
             'sosmed' => $sosmed,
         ]);
 
