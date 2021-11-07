@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FrontendController;
+
+use App\Http\Controllers\Jobseeker\{
+    JobseekerDashboardController,
+};
 //use App\Http\Controllers\PostingLowonganController;
 
 /*
@@ -20,12 +24,11 @@ use App\Http\Controllers\FrontendController;
 |
 */
 
+Auth::routes();
+
 Route::view('/', 'frontend.template.frontend')->name('frontend');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::middleware('role:jobseeker')->group(function () {
-        Route::view('jobseeker/dashboard', 'backend.backend')->name('jobseeker.dashboard');
-    });
     Route::middleware('role:company')->group(function () {
         Route::get('/company/dashboard', [BackendController::class, 'index']);
     });
@@ -34,7 +37,20 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
-Auth::routes();
+Route::group(['prefix' => 'jobseeker', 'middleware' => 'auth', 'role' => 'jobseeker'], function () {
+    Route::get('/dashboard', [
+        JobseekerDashboardController::class, 'index'
+    ])->name('jobseeker.dashboard');
+
+    // Route::group(['prefix' => 'profile'], function () {
+    //     Route::get('/', [
+    //         JobseekerDashboardController::class, 'index'
+    //     ])->name('jobseeker.dashboard');
+    // });
+});
+
+
+
 // BACKEND Marthin
 Route::get('/dashboard', [BackendController::class, 'index']);
 Route::get('/profile', [BackendController::class, 'profile']);

@@ -22,10 +22,12 @@
 <body>
 
     <div id="app">
-        @include('layouts.backend.sidebar')
+        @include('layouts.backend.jobseeker.sidebar')
         <div id="main">
             @yield('content')
+            @include('layouts.backend.jobseeker.footer')
         </div>
+
     </div>
 
     <script src="{{asset('backend/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
