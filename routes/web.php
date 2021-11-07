@@ -10,6 +10,7 @@ use App\Http\Controllers\FrontendController;
 
 use App\Http\Controllers\Jobseeker\{
     JobseekerDashboardController,
+    JobseekerProfileController,
 };
 //use App\Http\Controllers\PostingLowonganController;
 
@@ -42,11 +43,11 @@ Route::group(['prefix' => 'jobseeker', 'middleware' => 'auth', 'role' => 'jobsee
         JobseekerDashboardController::class, 'index'
     ])->name('jobseeker.dashboard');
 
-    // Route::group(['prefix' => 'profile'], function () {
-    //     Route::get('/', [
-    //         JobseekerDashboardController::class, 'index'
-    //     ])->name('jobseeker.dashboard');
-    // });
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/', [
+            JobseekerProfileController::class, 'index'
+        ])->name('jobseeker.profile.index');
+    });
 });
 
 
