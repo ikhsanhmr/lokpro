@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\Data_user;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -45,7 +46,7 @@ class RegisterController extends Controller
 
     public function redirectTo()
     {
-        return Auth::user()->role == 'jobseeker' ? '/jobseeker/dashboard': '/company/dashboard';
+        return Auth::user()->role == 'jobseeker' ? '/jobseeker/dashboard' : '/company/dashboard';
     }
 
     /**
@@ -59,7 +60,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'role' => [ 'required', 'string', Rule::in(['company','jobseeker'])],
+            'role' => ['required', 'string', Rule::in(['company', 'jobseeker'])],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -72,11 +73,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = new User();
+        $val = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'role' => $data['role'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // add tabel data user
+        $data_user = new Data_user();
+        $data_user->user_id = $user->where('email', '=', $data['email'])->first()->id;
+        $data_user->job_location = '';
+        $data_user->jumlah_pekerja = '';
+        $data_user->company_location = '';
+        $data_user->company_culture = '';
+        $data_user->sosmed = '||';
+        $data_user->logo = 'default.jpg';
+        $data_user->save();
+
+        return $val;
     }
 }

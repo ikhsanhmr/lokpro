@@ -2,7 +2,7 @@
     <div class="sidebar-header">
         <div class="d-flex justify-content-between">
             <div class="logo">
-                <a href="/company/profile"><img src="/backend/images/logo/logo.png" alt="Logo" srcset=""></a>
+                <a href="/{{ user()->role }}/profile"><img src="/backend/images/logo/logo.png" alt="Logo" srcset=""></a>
             </div>
             <div class="toggler">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -14,14 +14,21 @@
         <li class="sidebar-title">Menu</li>
 
         <li class="sidebar-item active ">
-            <a href="/dashboard" class='sidebar-link'>
+            <a href="/{{ user()->role }}/dashboard" class='sidebar-link'>
                 <i class="bi bi-grid-fill"></i>
                 <span>Dashboard</span>
             </a>
         </li>
         
+        <li class="sidebar-item ">
+            <a href="/{{ user()->role }}/profile" class='sidebar-link'>
+                <i class="far fa-id-badge"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+        
         <li class="sidebar-item">
-            <a href="/Company_Management" class='sidebar-link'>
+            <a href="/{{ user()->role }}/Management" class='sidebar-link'>
                 <i class="fas fa-building"></i>
                 <span>Company Management</span>
             </a>
