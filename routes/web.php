@@ -31,6 +31,7 @@ Route::view('/', 'frontend.template.frontend')->name('frontend');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::middleware('role:company')->group(function () {
+        Route::get('/company/Management', [DashboardController::class, 'index']);
         Route::get('/company/dashboard', [DashboardController::class, 'index']);
         Route::get('/company/profile', [ProfilController::class, 'index']);
         Route::post('/company/profile', [ProfilController::class, 'edit']);
@@ -53,13 +54,7 @@ Route::group(['prefix' => 'jobseeker', 'middleware' => 'auth', 'role' => 'jobsee
     });
 });
 
-
-
-// BACKEND Marthin
-Route::get('/dashboard', [BackendController::class, 'index']);
-Route::get('/profile', [BackendController::class, 'profile']);
-
 // BACKEND LANA
-Route::middleware('auth')->group(function(){
-//    Route::resource('/lowongan', PostingLowonganController::class);
+Route::middleware('auth')->group(function () {
+    //    Route::resource('/lowongan', PostingLowonganController::class);
 });
