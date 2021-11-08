@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::view('jobseeker/dashboard', 'backend.backend')->name('jobseeker.dashboard');
     });
     Route::middleware('role:company')->group(function () {
+        Route::get('/company/Management', [DashboardController::class, 'index']);
         Route::get('/company/dashboard', [DashboardController::class, 'index']);
         Route::get('/company/profile', [ProfilController::class, 'index']);
         Route::post('/company/profile', [ProfilController::class, 'edit']);
