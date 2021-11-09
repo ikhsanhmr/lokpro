@@ -21,14 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="8124d743-d659-4b09-86ee-136df3fd74a7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -157,7 +156,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../project-codeigniter" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -182,6 +181,8 @@
       <option name="presentableId" value="Default" />
       <updated>1635276752256</updated>
       <workItem from="1635276754991" duration="493000" />
+      <workItem from="1636384689976" duration="2643000" />
+      <workItem from="1636389375355" duration="909000" />
     </task>
     <servers />
   </component>
@@ -199,5 +200,11 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2660" y="271" key="FileChooserDialogImpl" timestamp="1636391540104">
+      <screen x="1920" y="0" width="1920" height="1032" />
+    </state>
+    <state x="2660" y="271" key="FileChooserDialogImpl/0.0.1920.1032/1920.0.1920.1032@1920.0.1920.1032" timestamp="1636391540104" />
   </component>
 </project>

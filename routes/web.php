@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\company\DashboardController;
 use App\Http\Controllers\company\ProfilController;
+use App\Http\Controllers\PostingLowonganController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -39,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/company/email', [ProfilController::class, 'email']);
         Route::post('/company/contact', [ProfilController::class, 'contact']);
         Route::post('/company/logo', [ProfilController::class, 'logo']);
+        Route::resource('/lowongan', PostingLowonganController::class);
     });
 });
 
