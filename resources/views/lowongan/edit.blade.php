@@ -1,18 +1,18 @@
-@extends('layouts.app')
+@extends('backend.layouts.main')
+@section('backendcontainer')
+<section class="py-0" id="home">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 py-6 text-sm-start">
+                <h1 class="mt-6 mb-sm-4 display-2 fw-semi-bold lh-sm fs-4 fs-lg-6 fs-xxl-8 text-center">Edit Lowongan Pekerjaan</h1>
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
 
-@section('title', 'Edit Lowongan Pekerjaan')
-
-@section('css')
-<style>
-
-</style>
-@endsection
-
-@section('content')
 <section class="content">
     <div class="container">
-        <h3 class="">Edit Lowongan Pekerjaan</h3>
-        <hr class="mb-5">
         <form action="{{route('lowongan.update', $lowongan->id)}}" method="post">
             @csrf
             @method('PUT')
@@ -39,10 +39,4 @@
         </form>
     </div>
 </section>
-@endsection
-
-@section('js')
-<script>
-
-</script>
 @endsection

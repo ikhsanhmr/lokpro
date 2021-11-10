@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/company/email', [ProfilController::class, 'email']);
         Route::post('/company/contact', [ProfilController::class, 'contact']);
         Route::post('/company/logo', [ProfilController::class, 'logo']);
-        Route::resource('/lowongan', PostingLowonganController::class);
+        Route::resource('/company/lowongan', PostingLowonganController::class);
     });
 });
 

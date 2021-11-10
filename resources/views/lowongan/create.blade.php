@@ -1,20 +1,11 @@
-@extends('layouts.app')
-
-@section('title', 'Posting Lowongan Pekerjaan')
-
-@section('css')
-<style>
-
-</style>
-@endsection
-
-@section('content')
+@extends('backend.layouts.main')
+@section('backendcontainer')
 <section class="py-0" id="home">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-12 py-6 text-sm-start">
                 <h1 class="mt-6 mb-sm-4 display-2 fw-semi-bold lh-sm fs-4 fs-lg-6 fs-xxl-8 text-center">Posting Lowongan Pekerjaan</h1>
-                <p class="mb-4 fs-1 text-center">Temukan Tenaga Kerja Berkualitas untuk Perusahaan Anda</p>
+                <hr>
             </div>
         </div>
     </div>
@@ -47,10 +38,4 @@
         </form>
     </div>
 </section>
-@endsection
-
-@section('js')
-<script>
-
-</script>
 @endsection

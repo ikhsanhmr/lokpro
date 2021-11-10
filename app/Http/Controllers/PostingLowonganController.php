@@ -44,7 +44,7 @@ class PostingLowonganController extends Controller
             'lokasi' => 'required',
         ]);
         PostingLowongan::create($validatedData);
-        return redirect(route('lowongan.index'))->with('success_added', 'Lowongan Pekerjaan berhasil dihapus!');
+        return redirect(route('lowongan.index'))->with('success_added', 'Lowongan Pekerjaan berhasil ditambah!');
     }
 
     /**
@@ -53,9 +53,12 @@ class PostingLowonganController extends Controller
      * @param  \App\Models\PostingLowongan  $postingLowongan
      * @return \Illuminate\Http\Response
      */
-    public function show(PostingLowongan $postingLowongan)
+    public function show($id)
     {
-        //
+        $lowongan = PostingLowongan::find($id);
+        return view('lowongan.show', [
+            'lowongan' => $lowongan
+        ]);
     }
 
     /**
@@ -89,7 +92,7 @@ class PostingLowonganController extends Controller
         ]);
         $lowongan = PostingLowongan::find($id);
         $lowongan->update($validatedData);
-        return redirect(route('lowongan.index'))->with('success_updated', 'Lowongan Pekerjaan berhasil dihapus!');
+        return redirect(route('lowongan.index'))->with('success_updated', 'Lowongan Pekerjaan berhasil diupdate!');
     }
 
     /**

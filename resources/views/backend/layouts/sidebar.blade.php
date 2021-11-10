@@ -41,10 +41,10 @@
             </a>
             <ul class="submenu ">
                 <li class="submenu-item ">
-                    <a href="/See_All_Job">See All</a>
+                    <a href="{{ route('lowongan.index') }}">See All</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="Add_New_Job">Post New Job</a>
+                    <a href="{{ route('lowongan.create') }}">Post New Job</a>
                 </li>
             </ul>
         </li>
