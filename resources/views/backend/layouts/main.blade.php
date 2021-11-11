@@ -12,19 +12,25 @@
     <link rel="stylesheet" href="{{asset('backend/css/bootstrap.css')}}">
 
     <link rel="stylesheet" href="{{asset('backend/vendors/iconly/bold.css')}}">
+    <link rel="stylesheet" href="/backend/vendors/simple-datatables/style.css">
 
     <link rel="stylesheet" href="{{asset('backend/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('backend/vendors/bootstrap-icons/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('backend/css/app.css')}}">
     <link rel="shortcut icon" href="{{asset('backend/images/favicon.svg')}}" type="image/x-icon">
     <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
 <div id="app">
     <div id="sidebar" class="active">
         <div class="sidebar-wrapper active">
-            @include('backend/layouts/sidebar')
+            @if(user()->role == 'company')
+                @include('backend/layouts/sidebar')
+            @else
+                @include('layouts.backend.jobseeker.sidebar')
+            @endif
             <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
         </div>
     </div>
@@ -60,6 +66,13 @@
 <script src="{{asset('backend/js/main.js')}}"></script>
 <script src="/backend/vendors/fontawesome/all.min.js"></script>
 <script src="/backend/js/main.js"></script>
+
+<script src="/backend/vendors/simple-datatables/simple-datatables.js"></script>
+<script>
+    // Simple Datatable
+    let table1 = document.querySelector('#table1');
+    let dataTable = new simpleDatatables.DataTable(table1);
+</script>
 </body>
 
 </html>

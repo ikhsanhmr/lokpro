@@ -22,17 +22,28 @@ function lamaran_company()
         ->join('data_users', 'data_users.user_id', '=', 'lamarans.company_id')
         ->select('users.*', 'data_users.id as data_users_id', 'data_users.job_location', 'data_users.jumlah_pekerja', 'data_users.company_location', 'data_users.company_culture', 'data_users.sosmed', 'data_users.logo', 'lamarans.id as id_lamaran', 'lamarans.company_id', 'lamarans.job_position', 'lamarans.salary_range', 'lamarans.job_location as lokasi_kerja', 'lamarans.job_description')
         ->where('lamarans.company_id', '=', Auth::user()->id)
+        ->orderBy('id_lamaran', 'desc')
         ->get();
 }
 
-function lamaran()
+function lamaran($id = false)
 {
     // mengambil data lamaran company
-    return DB::table('lamarans')
-        ->join('users', 'users.id', '=', 'lamarans.company_id')
-        ->join('data_users', 'data_users.user_id', '=', 'lamarans.company_id')
-        ->select('users.*', 'data_users.id as data_users_id', 'data_users.job_location', 'data_users.jumlah_pekerja', 'data_users.company_location', 'data_users.company_culture', 'data_users.sosmed', 'data_users.logo', 'lamarans.id as id_lamaran', 'lamarans.company_id', 'lamarans.job_position', 'lamarans.salary_range', 'lamarans.job_location as lokasi_kerja', 'lamarans.job_description')
-        ->get();
+    if ($id == false) {
+        return DB::table('lamarans')
+            ->join('users', 'users.id', '=', 'lamarans.company_id')
+            ->join('data_users', 'data_users.user_id', '=', 'lamarans.company_id')
+            ->select('users.*', 'data_users.id as data_users_id', 'data_users.job_location', 'data_users.jumlah_pekerja', 'data_users.company_location', 'data_users.company_culture', 'data_users.sosmed', 'data_users.logo', 'lamarans.id as id_lamaran', 'lamarans.company_id', 'lamarans.job_position', 'lamarans.salary_range', 'lamarans.job_location as lokasi_kerja', 'lamarans.job_description')
+            ->orderBy('id_lamaran', 'desc')
+            ->get();
+    } else {
+        return DB::table('lamarans')
+            ->join('users', 'users.id', '=', 'lamarans.company_id')
+            ->join('data_users', 'data_users.user_id', '=', 'lamarans.company_id')
+            ->select('users.*', 'data_users.id as data_users_id', 'data_users.job_location', 'data_users.jumlah_pekerja', 'data_users.company_location', 'data_users.company_culture', 'data_users.sosmed', 'data_users.logo', 'lamarans.id as id_lamaran', 'lamarans.company_id', 'lamarans.job_position', 'lamarans.salary_range', 'lamarans.job_location as lokasi_kerja', 'lamarans.job_description')
+            ->where('lamarans.id', '=', $id)
+            ->first();
+    }
 }
 
 function nav_on($dt = [])

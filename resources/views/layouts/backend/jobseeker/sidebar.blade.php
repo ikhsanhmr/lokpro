@@ -24,10 +24,10 @@
                         <span>Your Profile</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="/jobseeker/vacanci" class='sidebar-link'>
-                        <i class="bi bi-person"></i>
-                        <span>Vacanci</span>
+                <li class="sidebar-item {{ nav_on(['job_vacanci']) }}">
+                    <a href="/jobseeker/job_vacanci" class='sidebar-link'>
+                        <i class="far fa-building"></i>
+                        <span>Job Vacancy</span>
                     </a>
                 </li>
 

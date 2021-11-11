@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{asset('backend/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('backend/vendors/bootstrap-icons/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('backend/css/app.css')}}">
+    <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
     @yield('spesifik_link')
 </head>
 
@@ -29,6 +30,8 @@
     <script src="{{asset('backend/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('backend/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('backend/js/main.js')}}"></script>
+    <script src="/backend/vendors/fontawesome/all.min.js"></script>
+    <script src="/backend/js/main.js"></script>
 </body>
 
 </html>
