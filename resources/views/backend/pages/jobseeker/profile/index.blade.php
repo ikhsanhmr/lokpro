@@ -57,12 +57,13 @@
                         </ul>
                         <div class="tab-content mt-4" id="myTabContent">
                             <div class="tab-pane fade active show" id="personal-information" role="tabpanel" aria-labelledby="personal-information-tab">
-                                <form id="personal-information-form" class="form mt-4">
+                                <form id="personal-information-form" class="form" action="{{ route('jobseeker.profile.update-personal-info') }}" method="POST">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-2">
                                             <img src="{{ asset('/backend/images/faces/2.jpg') }}" alt=""
                                                 class="w-100">
-                                            <button id="change-profile-picture-button" class="btn btn-block btn-primary mt-2 font-weight-bold">CHANGE</button>
+                                            <button type="button" id="change-profile-picture-button" class="btn btn-block btn-primary mt-2 font-weight-bold">CHANGE</button>
                                             <div style="display: none">
                                                 <input type="file" name="profile_picture" id="profile_picture">
                                             </div>
@@ -71,18 +72,33 @@
                                             <h3>{{ Auth::user()->name }}</h3>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="mt-2">
+                                        @if (count($errors) > 0)
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <ul class="p-1 m-1">
+                                                    @foreach ($errors->all() as $error)
+                                                    <li>
+                                                        {{ $error }}
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="row mt-4">
                                         <div class="col-md-5 col-12">
                                             <div class="form-group">
                                                 <label for="fullname">Full Name *</label>
-                                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full Name">
+                                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full Name" value="{{ Auth::user()->name }}">
                                             </div>
                                         </div>
                                         <div class="col-md-5 col-12">
                                             <div class="form-group">
                                                 <label for="date_of_birth">Date of Birth *</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+                                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth"
+                                                    value="{{ isset($jobseeker_detail)?$jobseeker_detail->date_of_birth:'' }}">
                                                     <span class="input-group-text" id="basic-addon2">
                                                         <i class="bi bi-calendar-week"></i>
                                                     </span>
@@ -93,9 +109,20 @@
                                             <div class="form-group">
                                                 <label for="gender">Gender *</label>
                                                 <select class="form-select" name="gender" id="gender">
-                                                    <option value="0">Choose</option>
-                                                    <option value="male">Laki - laki</option>
-                                                    <option value="female">Perempuan</option>
+                                                    <option value="">Choose</option>
+
+                                                    @if (isset($jobseeker_detail))
+                                                        @if ($jobseeker_detail->gender == 'male')
+                                                            <option value="male" selected>Laki - laki</option>
+                                                            <option value="female">Perempuan</option>
+                                                        @else
+                                                            <option value="male">Laki - laki</option>
+                                                            <option value="female" selected>Perempuan</option>
+                                                        @endif
+                                                    @else
+                                                        <option value="male">Laki - laki</option>
+                                                        <option value="female">Perempuan</option>
+                                                    @endif
                                                 </select>
                                             </div>
                                         </div>
@@ -104,7 +131,8 @@
                                         <div class="col-md-4 col-12">
                                             <div class="form-group">
                                                 <label for="phone_number">Phone Number *</label>
-                                                <input type="text" id="phone_number" name="phone_number" class="form-control" placeholder="Phone Number">
+                                                <input type="text" id="phone_number" name="phone_number" class="form-control" placeholder="Phone Number"
+                                                value="{{ isset($jobseeker_detail)?$jobseeker_detail->phone_number:'' }}">
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-12">
@@ -130,7 +158,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="last-name-column">Bio</label>
-                                                <textarea class="form-control" name="bio" id="bio" cols="30" rows="10"></textarea>
+                                                <textarea class="form-control" name="bio" id="bio" cols="30" rows="10">{{ isset($jobseeker_detail)?$jobseeker_detail->bio:'' }}</textarea>
                                             </div>
                                         </div>
                                     </div>

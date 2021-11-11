@@ -47,6 +47,9 @@ Route::group(['prefix' => 'jobseeker', 'middleware' => 'auth', 'role' => 'jobsee
         Route::get('/', [
             JobseekerProfileController::class, 'index'
         ])->name('jobseeker.profile.index');
+        Route::post('/update-personal-info', [
+            JobseekerProfileController::class, 'updatePersonalInfo'
+        ])->name('jobseeker.profile.update-personal-info');
     });
 });
 
