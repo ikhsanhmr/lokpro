@@ -41,10 +41,10 @@
             </a>
             <ul class="submenu ">
                 <li class="submenu-item ">
-                    <a href="/See_All_Job">See All</a>
+                    <a href="/company/See_All_Job">See All</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="Add_New_Job">Post New Job</a>
+                    <a href="/company/Post_Job">Post New Job</a>
                 </li>
             </ul>
         </li>
@@ -54,7 +54,7 @@
                 @csrf
                 <button type="submit" class='sidebar-link btn btn-transparent'>
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout Sementara</span>
+                    <span>Logout</span>
                 </button>
             </form>
         </li>
