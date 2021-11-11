@@ -34,3 +34,14 @@ function lamaran()
         ->select('users.*', 'data_users.id as data_users_id', 'data_users.job_location', 'data_users.jumlah_pekerja', 'data_users.company_location', 'data_users.company_culture', 'data_users.sosmed', 'data_users.logo', 'lamarans.id as id_lamaran', 'lamarans.company_id', 'lamarans.job_position', 'lamarans.salary_range', 'lamarans.job_location as lokasi_kerja', 'lamarans.job_description')
         ->get();
 }
+
+function nav_on($dt = [])
+{
+    $url =  explode('/', url()->full());
+    for ($i = 0; $i < count($dt); $i++) {
+        if ($dt[$i] == end($url)) {
+            return 'active';
+        }
+    }
+    return '';
+}

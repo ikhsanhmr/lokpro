@@ -13,7 +13,7 @@
     <ul class="menu">
         <li class="sidebar-title">Menu</li>
 
-        <li class="sidebar-item {{ end($url)=='dashboard'?'active':'' }}">
+        <li class="sidebar-item {{ nav_on(['dashboard']) }}">
             <a href="/{{ user()->role }}/dashboard" class='sidebar-link'>
                 <i class="bi bi-grid-fill"></i>
                 <span>Dashboard</span>
@@ -27,23 +27,23 @@
             </a>
         </li> --}}
         
-        <li class="sidebar-item {{ end($url)=='Management'?'active':'' }}">
+        <li class="sidebar-item {{ nav_on(['Management']) }}">
             <a href="/{{ user()->role }}/Management" class='sidebar-link'>
                 <i class="fas fa-building"></i>
                 <span>Company Management</span>
             </a>
         </li>
 
-        <li class="sidebar-item  has-sub {{ end($url)=='See_All_Job'?'active':(end($url)=='Post_Job'?'active':'') }}">
+        <li class="sidebar-item  has-sub {{ nav_on(['See_All_Job', 'Post_Job']) }}">
             <a href="#" class='sidebar-link'>
                 <i class="fas fa-address-card"></i>
                 <span>Job</span>
             </a>
-            <ul class="submenu {{ end($url)=='See_All_Job'?'active':(end($url)=='Post_Job'?'active':'') }}">
-                <li class="submenu-item {{ end($url)=='See_All_Job'?'active':'' }}">
+            <ul class="submenu {{ nav_on(['See_All_Job', 'Post_Job']) }}">
+                <li class="submenu-item {{ nav_on(['See_All_Job']) }}">
                     <a href="/company/See_All_Job">See All</a>
                 </li>
-                <li class="submenu-item {{ end($url)=='Post_Job'?'active':'' }}">
+                <li class="submenu-item {{ nav_on(['Post_Job']) }}">
                     <a href="/company/Post_Job">Post New Job</a>
                 </li>
             </ul>
