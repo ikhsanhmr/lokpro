@@ -1,77 +1,189 @@
 @extends('layouts.backend.jobseeker.app')
 
-@section('content')
-<header class="mb-3">
-    <a href="#" class="burger-btn d-block d-xl-none">
-        <i class="bi bi-justify fs-3"></i>
-    </a>
-</header>
+@section('style')
+    <style>
+        .profile-box {
+            width: 150px;
+            height: 150px;
+        }
 
-<div class="page-heading">
-    <h3>Your Profile</h3>
-</div>
-<div class="page-content">
-    <section class="row">
-        <div class="col-12 col-lg-9">
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-body">
-                        <form class="form">
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">First Name</label>
-                                        <input type="text" id="first-name-column" class="form-control" placeholder="First Name" name="fname-column">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Last Name</label>
-                                        <input type="text" id="last-name-column" class="form-control" placeholder="Last Name" name="lname-column">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">City</label>
-                                        <input type="text" id="city-column" class="form-control" placeholder="City" name="city-column">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">Country</label>
-                                        <input type="text" id="country-floating" class="form-control" name="country-floating" placeholder="Country">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Company</label>
-                                        <input type="text" id="company-column" class="form-control" name="company-column" placeholder="Company">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="email-id-column">Email</label>
-                                        <input type="email" id="email-id-column" class="form-control" name="email-id-column" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-group col-12">
-                                    <div class="form-check">
-                                        <div class="checkbox">
-                                            <input type="checkbox" id="checkbox5" class="form-check-input" checked="">
-                                            <label for="checkbox5">Remember Me</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                    <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+    </style>
+
+@endsection
+
+@section('content')
+    <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none">
+            <i class="bi bi-justify fs-3"></i>
+        </a>
+    </header>
+
+    <div class="page-heading">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <h3>Your Profile</h3>
+                    <p class="text-subtitle text-muted">Complete your profile to get the best of our services</p>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ route('jobseeker.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Your Profile</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
-    </section>
-</div>
+    </div>
+    <div class="page-content">
+        <section class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="personal-information-tab" data-bs-toggle="tab" href="#personal-information" role="tab"
+                                    aria-controls="personal-information" aria-selected="true">Personal Information</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="education-contact-tab" data-bs-toggle="tab" href="#education-contact" role="tab"
+                                    aria-controls="exp-education" aria-selected="false">Education & Contacts</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="experience-preference-tab" data-bs-toggle="tab" href="#experience-preference" role="tab"
+                                    aria-controls="experience-preference" aria-selected="false">Experience & Job Preferences</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-4" id="myTabContent">
+                            <div class="tab-pane fade active show" id="personal-information" role="tabpanel" aria-labelledby="personal-information-tab">
+                                <form id="personal-information-form" class="form mt-4">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img src="{{ asset('/backend/images/faces/2.jpg') }}" alt=""
+                                                class="w-100">
+                                            <button id="change-profile-picture-button" class="btn btn-block btn-primary mt-2 font-weight-bold">CHANGE</button>
+                                            <div style="display: none">
+                                                <input type="file" name="profile_picture" id="profile_picture">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <h3>{{ Auth::user()->name }}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 col-12">
+                                            <div class="form-group">
+                                                <label for="fullname">Full Name *</label>
+                                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-12">
+                                            <div class="form-group">
+                                                <label for="date_of_birth">Date of Birth *</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+                                                    <span class="input-group-text" id="basic-addon2">
+                                                        <i class="bi bi-calendar-week"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-12">
+                                            <div class="form-group">
+                                                <label for="gender">Gender *</label>
+                                                <select class="form-select" name="gender" id="gender">
+                                                    <option value="0">Choose</option>
+                                                    <option value="male">Laki - laki</option>
+                                                    <option value="female">Perempuan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="phone_number">Phone Number *</label>
+                                                <input type="text" id="phone_number" name="phone_number" class="form-control" placeholder="Phone Number">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="province">Province *</label>
+                                                <div class="form-group">
+                                                    <select class="form-select" name="province" id="province">
+                                                        <option value="0">Choose</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-12">
+                                            <div class="form-group">
+                                                <label for="city">City *</label>
+                                                <select class="form-select" name="city" id="city">
+                                                    <option value="0">Choose</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="last-name-column">Bio</label>
+                                                <textarea class="form-control" name="bio" id="bio" cols="30" rows="10"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 col-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">SAVE</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="education-contact" role="tabpanel" aria-labelledby="education-contact-tab">
+                                <form id="education-contact-form" class="form mt-4">
+                                    <div class="row">
+                                        <div class="col-md-2 col-12">
+                                            <div class="form-group">
+                                                <label for="gender">Education/Degree *</label>
+                                                <select class="form-select" id="degree" name="degree">
+                                                    <option value="0">Choose</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-12">
+                                            <div class="form-group">
+                                                <label for="fullname">Institution *</label>
+                                                <input type="text" id="institution_name" name="institution_name" class="form-control" placeholder="Institution Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-12">
+                                            <div class="form-group">
+                                                <label for="gender">Graduation Year *</label>
+                                                <select class="form-select" id="graduation_year" name="graduation_year">
+                                                    <option value="0">Choose</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 col-12 d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary me-1 mb-1">SAVE</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="experience-preference" role="tabpanel" aria-labelledby="experience-preference-tab">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    $("#change-profile-picture-button").on('click', function (event) {
+        $('#profile_picture').trigger('click');
+    });
+</script>
 @endsection
