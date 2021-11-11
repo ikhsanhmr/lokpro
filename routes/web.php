@@ -33,10 +33,10 @@ Route::view('/', 'frontend.template.frontend')->name('frontend');
 Route::group(['middleware' => 'auth'], function () {
     Route::middleware('role:company')->group(function () {
         // for dashboard company
-        Route::get('/company/Management', [DashboardController::class, 'index']);
         Route::get('/company/dashboard', [DashboardController::class, 'index']);
 
         // for profile company
+        Route::get('/company/Management', [ProfilController::class, 'index']);
         Route::get('/company/profile', [ProfilController::class, 'index']);
         Route::post('/company/profile', [ProfilController::class, 'edit']);
         Route::post('/company/sosmed', [ProfilController::class, 'sosmed']);

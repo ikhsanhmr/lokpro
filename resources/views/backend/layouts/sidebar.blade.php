@@ -20,12 +20,12 @@
             </a>
         </li>
         
-        <li class="sidebar-item ">
+        {{-- <li class="sidebar-item ">
             <a href="/{{ user()->role }}/profile" class='sidebar-link'>
                 <i class="far fa-id-badge"></i>
                 <span>Profile</span>
             </a>
-        </li>
+        </li> --}}
         
         <li class="sidebar-item">
             <a href="/{{ user()->role }}/Management" class='sidebar-link'>
