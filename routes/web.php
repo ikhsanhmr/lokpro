@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\company\DashboardController;
 use App\Http\Controllers\company\ProfilController;
+use App\Http\Controllers\PostingLowonganController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -43,11 +44,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/company/email', [ProfilController::class, 'email']);
         Route::post('/company/contact', [ProfilController::class, 'contact']);
         Route::post('/company/logo', [ProfilController::class, 'logo']);
-
         //for job company
         Route::get('/company/See_All_Job', [JobController::class, 'index']);
         Route::get('/company/Post_Job', [JobController::class, 'post']);
         Route::post('/company/Post_Job', [JobController::class, 'save_post']);
+        Route::resource('/company/lowongan', PostingLowonganController::class);
     });
 });
 
