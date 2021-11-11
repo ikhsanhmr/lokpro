@@ -1,3 +1,4 @@
+<?php $url = explode('/', url()->full()) ?>
 <!DOCTYPE html>
 <html lang="en">
 
