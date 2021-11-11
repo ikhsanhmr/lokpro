@@ -69,7 +69,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-10">
-                                            <h3>{{ Auth::user()->name }}</h3>
+                                            <h3>{{ $jobseeker->name }}</h3>
                                         </div>
                                     </div>
                                     <div class="mt-2">
@@ -90,15 +90,15 @@
                                         <div class="col-md-5 col-12">
                                             <div class="form-group">
                                                 <label for="fullname">Full Name *</label>
-                                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full Name" value="{{ Auth::user()->name }}">
+                                                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full Name" value="{{ $jobseeker->name }}">
                                             </div>
                                         </div>
-                                        <div class="col-md-5 col-12">
+                                        <div class="col-md-3 col-12">
                                             <div class="form-group">
                                                 <label for="date_of_birth">Date of Birth *</label>
                                                 <div class="input-group mb-3">
                                                     <input type="date" class="form-control" id="date_of_birth" name="date_of_birth"
-                                                    value="{{ isset($jobseeker_detail)?$jobseeker_detail->date_of_birth:'' }}">
+                                                    value="{{ isset($jobseeker->jobseekerDetail)?$jobseeker->jobseekerDetail->date_of_birth:'' }}">
                                                     <span class="input-group-text" id="basic-addon2">
                                                         <i class="bi bi-calendar-week"></i>
                                                     </span>
@@ -110,9 +110,8 @@
                                                 <label for="gender">Gender *</label>
                                                 <select class="form-select" name="gender" id="gender">
                                                     <option value="">Choose</option>
-
-                                                    @if (isset($jobseeker_detail))
-                                                        @if ($jobseeker_detail->gender == 'male')
+                                                    @if (isset($jobseeker->jobseekerDetail))
+                                                        @if ($jobseeker->jobseekerDetail->gender == 'male')
                                                             <option value="male" selected>Laki - laki</option>
                                                             <option value="female">Perempuan</option>
                                                         @else
@@ -126,31 +125,57 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 col-12">
+                                        <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="phone_number">Phone Number *</label>
                                                 <input type="text" id="phone_number" name="phone_number" class="form-control" placeholder="Phone Number"
-                                                value="{{ isset($jobseeker_detail)?$jobseeker_detail->phone_number:'' }}">
+                                                value="{{ isset($jobseeker->jobseekerDetail)?$jobseeker->jobseekerDetail->phone_number:'' }}">
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-12">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="phone_number">Address *</label>
+                                                <input type="text" id="address_description" name="address_description" class="form-control" placeholder="Address"
+                                                value="{{ isset($jobseeker->jobseekerAddress)?$jobseeker->jobseekerAddress->address_description:'' }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-12">
                                             <div class="form-group">
                                                 <label for="province">Province *</label>
                                                 <div class="form-group">
                                                     <select class="form-select" name="province" id="province">
-                                                        <option value="0">Choose</option>
+                                                        <option value="">Choose</option>
+                                                        @if (isset($jobseeker->jobseekerAddress))
+                                                            @foreach ($provinces as $province)
+                                                                @if ($province->id == $jobseeker->jobseekerAddress->province_id)
+                                                                    <option value="{{ $province->id }}" selected>{{ $province->name }}</option>
+                                                                @else
+                                                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($provinces as $province)
+                                                                <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                            @endforeach
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-12">
+                                        <div class="col-md-3 col-12">
                                             <div class="form-group">
                                                 <label for="city">City *</label>
-                                                <select class="form-select" name="city" id="city">
-                                                    <option value="0">Choose</option>
-                                                </select>
+                                                <div id="city-input-field">
+                                                    <select class="form-select" name="city" id="city">
+                                                        @if (isset($jobseeker->jobseekerAddress))
+                                                            <option value="{{ $jobseeker->jobseekerAddress->city_id }}">{{ $jobseeker->jobseekerAddress->city->name }}</option>
+                                                        @else
+                                                            <option value="">Choose</option>
+                                                        @endif
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -158,7 +183,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="last-name-column">Bio</label>
-                                                <textarea class="form-control" name="bio" id="bio" cols="30" rows="10">{{ isset($jobseeker_detail)?$jobseeker_detail->bio:'' }}</textarea>
+                                                <textarea class="form-control" name="bio" id="bio" cols="30" rows="10">{{ isset($jobseeker->jobseekerDetail)?$jobseeker->jobseekerDetail->bio:'' }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -212,6 +237,42 @@
 <script type="text/javascript">
     $("#change-profile-picture-button").on('click', function (event) {
         $('#profile_picture').trigger('click');
+    });
+
+    $(document).ready(function() {
+        $("#province option").on('click', function (event) {
+            const getUrl = "{{ route('api.jobseeker.profile.check-cities') }}";
+            const provinceId = $("#province").val();
+
+            $("#city-input-field #city option").each(function() {
+                $(this).remove();
+            });
+
+            $.get(getUrl, {
+                    _method: 'GET',
+                    _token: '{{ csrf_token() }}',
+                    province_id: provinceId,
+                },
+                function (response) {
+                    if (response.success) {
+
+                        $('#city-input-field #city').append(
+                            '<option value="">Choose</option>'
+                        );
+
+                        $.each(response.data.cities, function(index) {
+                            $('#city-input-field #city').append(
+                                '<option value="'+ this.id +'">' + this.name + '</option>'
+                            );
+                        });
+                    } else {
+                        console.log('Failed');
+                    }
+
+                    return false;
+                }
+            );
+        });
     });
 </script>
 @endsection
