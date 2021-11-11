@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{asset('backend/vendors/bootstrap-icons/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('backend/css/app.css')}}">
     @yield('spesifik_link')
+    @yield('style')
 </head>
 
 <body>
@@ -29,6 +30,9 @@
     <script src="{{asset('backend/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('backend/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('backend/js/main.js')}}"></script>
+    <script src="{{ asset('backend/vendors/jquery/jquery.min.js') }}"></script>
+
+    @yield('script')
 </body>
 
 </html>
