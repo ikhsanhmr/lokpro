@@ -13,6 +13,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Jobseeker\{
     JobseekerDashboardController,
     JobseekerProfileController,
+    MyApplicationController,
     VacanciController,
 };
 //use App\Http\Controllers\PostingLowonganController;
@@ -59,6 +60,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::view('jobseeker/job_vacanci', 'backend/jobseeker/job_vacanci', ['nav_tree' => '']);
         Route::get('/jobseeker/job_detail', [VacanciController::class, 'detail_job']);
         Route::post('/jobseeker/job_detail', [VacanciController::class, 'save_pelamar']);
+        Route::get('/jobseeker/waiting_for_confirmate', [MyApplicationController::class, 'belum']);
+        Route::get('/jobseeker/confirmed', [MyApplicationController::class, 'sudah']);
+        Route::get('/jobseeker/rejected', [MyApplicationController::class, 'ditolak']);
     });
 });
 

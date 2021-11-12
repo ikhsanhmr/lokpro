@@ -25,6 +25,12 @@ class VacanciController extends Controller
 
     public function save_pelamar(Request $req)
     {
+
+        // untuk membatasi user mendaftar 2 kali pada 1 lowongan
+        if (pelamar()->where('pelamar_id', '=', user()->id)->where('lamaran_id', '=', $req->lamaran_id)->count() > 0) {
+            return redirect('/jobseeker/job_detail?id=' . $req->lamaran_id)->with('gagal', "Can't apply 2 times in 1 job");
+        }
+
         $pelamar = new Pelamar();
         $req->validate([
             'ktp_number' => 'required|max:16|min:16',
@@ -37,6 +43,7 @@ class VacanciController extends Controller
             'marital_status' => 'required',
             'document' => 'required|mimes:pdf',
         ]);
+
 
         $filename = $req->file('document')->hashName();
         $logo = $req->file('document')->move('backend/document/jobseker', $filename);
@@ -55,6 +62,6 @@ class VacanciController extends Controller
         $pelamar->status = 'belum';
         $pelamar->save();
 
-        return redirect('/jobseeker/job_detail?id=' . $req->lamaran_id)->with('berhasil', 'Successfully applied for a job');
+        return redirect('/jobseeker/waiting_for_confirmate')->with('berhasil', 'Successfully applied for a job');
     }
 }
