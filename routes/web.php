@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
         //for job company
         Route::get('/company/See_All_Job', [JobController::class, 'index']);
         Route::get('/company/Post_Job', [JobController::class, 'post']);
+        Route::post('/company/Post_Job', [JobController::class, 'save_post']);
         Route::resource('/company/lowongan', PostingLowonganController::class);
     });
 });
@@ -57,6 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
         // for lowongan jobseeker
         Route::view('jobseeker/job_vacanci', 'backend/jobseeker/job_vacanci', ['nav_tree' => '']);
         Route::get('/jobseeker/job_detail', [VacanciController::class, 'detail_job']);
+        Route::post('/jobseeker/job_detail', [VacanciController::class, 'save_pelamar']);
     });
 });
 

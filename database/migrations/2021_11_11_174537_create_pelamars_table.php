@@ -15,6 +15,7 @@ class CreatePelamarsTable extends Migration
     {
         Schema::create('pelamars', function (Blueprint $table) {
             $table->id();
+            $table->string('pelamar_id');
             $table->string('lamaran_id');
             $table->string('ktp_number');
             $table->string('place_of_birth');
@@ -25,6 +26,7 @@ class CreatePelamarsTable extends Migration
             $table->string('religion');
             $table->string('marital_status');
             $table->string('document');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -22,6 +22,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
+{{-- mematikan fitur inpect element dan lainnya di web --}}
+{{-- <body oncontextmenu="return false" onkeydown="return false;" onmousedown="return false;"> --}}
 <body>
 <div id="app">
     <div id="sidebar" class="active">
@@ -68,6 +70,9 @@
 <script src="/backend/js/main.js"></script>
 
 <script src="/backend/vendors/simple-datatables/simple-datatables.js"></script>
+{{-- Mematikan fungsi klik kanan --}}
+{{-- <script>document.addEventListener('contextmenu', event => event.preventDefault());</script> --}}
+
 <script>
     // Simple Datatable
     let table1 = document.querySelector('#table1');

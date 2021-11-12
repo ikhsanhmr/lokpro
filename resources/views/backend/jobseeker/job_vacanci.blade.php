@@ -39,7 +39,7 @@
                                 <img height="30px" width="30px" src="/backend/images/logocompany/{{ $l->logo }}" alt="tes">
                             </div>
                             <div class="col-10">
-                                <h5 class="judul">{{ $l->job_position }}</h5>
+                                <h5>{{ $l->job_position }}</h5>
                             </div>
                         </div>
                         <p>
