@@ -28,7 +28,11 @@ use App\Http\Controllers\Jobseeker\{
 
 Auth::routes();
 
-Route::view('/', 'frontend.template.frontend')->name('frontend');
+Route::get('/', [FrontendController::class, 'index']);
+Route::get('/jobs', [FrontendController::class, 'jobs']);
+Route::get('/jobs/detail', [FrontendController::class, 'detailsJob']);
+Route::get('/articel', [FrontendController::class, 'articel']);
+Route::get('/articel/detail', [FrontendController::class, 'detailsArticel']);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::middleware('role:company')->group(function () {
