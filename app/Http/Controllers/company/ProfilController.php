@@ -113,7 +113,7 @@ class ProfilController extends Controller
 
         $filename = $req->file('logo')->hashName();
 
-        if ($filename != user()->logo) {
+        if ('default.jpg' != user()->logo) {
             File::delete('backend/images/logocompany/' . user()->logo);
         }
         $logo = $req->file('logo')->move('backend/images/logocompany', $filename);

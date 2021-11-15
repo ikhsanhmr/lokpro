@@ -7,11 +7,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\company\JobController;
 use App\Http\Controllers\FrontendController;
 
 use App\Http\Controllers\Jobseeker\{
     JobseekerDashboardController,
     JobseekerProfileController,
+    MyApplicationController,
+    VacanciController,
 };
 //use App\Http\Controllers\PostingLowonganController;
 
@@ -36,15 +39,34 @@ Route::get('/articel/detail', [FrontendController::class, 'detailsArticel']);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::middleware('role:company')->group(function () {
-        Route::get('/company/Management', [DashboardController::class, 'index']);
+        // for dashboard company
         Route::get('/company/dashboard', [DashboardController::class, 'index']);
+
+        // for profile company
+        Route::get('/company/Management', [ProfilController::class, 'index']);
         Route::get('/company/profile', [ProfilController::class, 'index']);
         Route::post('/company/profile', [ProfilController::class, 'edit']);
         Route::post('/company/sosmed', [ProfilController::class, 'sosmed']);
         Route::post('/company/email', [ProfilController::class, 'email']);
         Route::post('/company/contact', [ProfilController::class, 'contact']);
         Route::post('/company/logo', [ProfilController::class, 'logo']);
+        //for job company
+        Route::get('/company/See_All_Job', [JobController::class, 'index']);
+        Route::get('/company/Post_Job', [JobController::class, 'post']);
+        Route::post('/company/Post_Job', [JobController::class, 'save_post']);
         Route::resource('/company/lowongan', PostingLowonganController::class);
+    });
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::middleware('role:jobseeker')->group(function () {
+        // for lowongan jobseeker
+        Route::view('jobseeker/job_vacanci', 'backend/jobseeker/job_vacanci', ['nav_tree' => '']);
+        Route::get('/jobseeker/job_detail', [VacanciController::class, 'detail_job']);
+        Route::post('/jobseeker/job_detail', [VacanciController::class, 'save_pelamar']);
+        Route::get('/jobseeker/waiting_for_confirmate', [MyApplicationController::class, 'belum']);
+        Route::get('/jobseeker/confirmed', [MyApplicationController::class, 'sudah']);
+        Route::get('/jobseeker/rejected', [MyApplicationController::class, 'ditolak']);
     });
 });
 

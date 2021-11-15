@@ -24,13 +24,28 @@
                         <span>Your Profile</span>
                     </a>
                 </li>
-
-                <li class="sidebar-title">Jobs</li>
-                <li class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-search"></i>
-                        <span>Browse</span>
+                <li class="sidebar-item {{ nav_on(['job_vacanci']) }}">
+                    <a href="/jobseeker/job_vacanci" class='sidebar-link'>
+                        <i class="far fa-building"></i>
+                        <span>Job Vacancy</span>
                     </a>
+                </li>
+                <li class="sidebar-item  has-sub {{ nav_on(['waiting_for_confirmate', 'confirmed', 'rejected']) }}">
+                    <a href="#" class='sidebar-link'>
+                        <i class="fas fa-passport"></i>
+                        <span>My Application</span>
+                    </a>
+                    <ul class="submenu {{ nav_on(['waiting_for_confirmate', 'confirmed', 'rejected']) }}">
+                        <li class="submenu-item {{ nav_on(['waiting_for_confirmate']) }}">
+                            <a href="/jobseeker/waiting_for_confirmate">Waiting for confirmation</a>
+                        </li>
+                        <li class="submenu-item {{ nav_on(['confirmed']) }}">
+                            <a href="/jobseeker/confirmed">Confirmed</a>
+                        </li>
+                        <li class="submenu-item {{ nav_on(['rejected']) }}">
+                            <a href="/jobseeker/rejected">Rejected</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
 
