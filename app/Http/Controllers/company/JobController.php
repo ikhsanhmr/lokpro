@@ -16,19 +16,19 @@ class JobController extends Controller
             'title' => 'All job page'
         ];
 
-        return view("backend/company/all_job", $data);
+        return view("backend/company/job_index", $data);
     }
 
-    public function post()
+    public function create()
     {
         $data = [
             'title' => 'Post page'
         ];
 
-        return view("backend/company/post_job", $data);
+        return view("backend/company/job_create", $data);
     }
 
-    public function save_post(Request $req)
+    public function store(Request $req)
     {
         $req->validate([
             'job_position' => 'required',
@@ -45,6 +45,41 @@ class JobController extends Controller
         $lamaran->job_description = $req->job_description;
         $lamaran->save();
 
-        return redirect('/company/Post_Job')->with('berhasil', 'Successfully insert data');
+        return redirect('/company/job/create')->with('berhasil', 'Successfully insert data');
+    }
+    public function show($id)
+    {
+        $data = [
+            'job' => Lamaran::find($id)
+        ];
+
+        return view('backend/company/job_show', $data);
+    }
+    public function edit($id)
+    {
+        $data = [
+            'job' => Lamaran::find($id)
+        ];
+
+        return view('backend/company/job_edit', $data);
+    }
+    public function update(Request $req, $id)
+    {
+        $validated = $req->validate([
+            'job_position' => 'required',
+            'salary_range' => 'required',
+            'job_location' => 'required',
+            'job_description' => 'required'
+        ]);
+
+        $lamaran = Lamaran::find($id);
+        $lamaran->update($validated);
+        return redirect('/company/job/' . $id)->with('berhasil', 'Successfully change data');
+    }
+    public function destroy(Request $req, $id)
+    {
+        $lamaran = Lamaran::find($id);
+        $lamaran->delete();
+        return redirect('/company/job')->with('berhasil', 'Successfully remove data');
     }
 }

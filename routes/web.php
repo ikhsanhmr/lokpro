@@ -51,10 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/company/contact', [ProfilController::class, 'contact']);
         Route::post('/company/logo', [ProfilController::class, 'logo']);
         //for job company
-        Route::get('/company/See_All_Job', [JobController::class, 'index']);
-        Route::get('/company/Post_Job', [JobController::class, 'post']);
-        Route::post('/company/Post_Job', [JobController::class, 'save_post']);
-        Route::resource('/company/lowongan', PostingLowonganController::class);
+        Route::resource('/company/job', JobController::class);
+        // Route::resource('/company/lowongan', PostingLowonganController::class);
     });
 });
 
