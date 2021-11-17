@@ -59,7 +59,7 @@ class VacanciController extends Controller
         $pelamar->religion = $req->religion;
         $pelamar->marital_status = $req->marital_status;
         $pelamar->document = $filename;
-        $pelamar->status = 'belum';
+        $pelamar->status = 'menunggu';
         $pelamar->save();
 
         return redirect('/jobseeker/waiting_for_confirmate')->with('berhasil', 'Successfully applied for a job');
