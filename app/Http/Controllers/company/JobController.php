@@ -4,6 +4,7 @@ namespace App\Http\Controllers\company;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lamaran;
+use App\Models\Pelamar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -81,5 +82,22 @@ class JobController extends Controller
         $lamaran = Lamaran::find($id);
         $lamaran->delete();
         return redirect('/company/job')->with('berhasil', 'Successfully remove data');
+    }
+
+    public function pelamar_index(Lamaran $lamaran)
+    {
+        $data = [
+            'lamaran' => $lamaran,
+            'pelamars' => Pelamar::where('lamaran_id', $lamaran->id)->get()
+        ];
+
+        return view('backend/company/pelamar_index', $data);
+    }
+
+    public function pelamar_show(Lamaran $lamaran, Pelamar $pelamar)
+    {
+        $data = compact('lamaran', 'pelamar');
+
+        return view('backend/company/pelamar_show', $data);
     }
 }

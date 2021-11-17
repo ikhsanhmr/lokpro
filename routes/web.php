@@ -40,7 +40,7 @@ Route::get('/articel/detail', [FrontendController::class, 'detailsArticel']);
 Route::group(['middleware' => 'auth'], function () {
     Route::middleware('role:company')->group(function () {
         // for dashboard company
-        Route::get('/company/dashboard', [DashboardController::class, 'index']);
+        Route::get('/company/dashboard', [DashboardController::class, 'index'])->name('company.dashboard');
 
         // for profile company
         Route::get('/company/Management', [ProfilController::class, 'index']);
@@ -52,6 +52,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/company/logo', [ProfilController::class, 'logo']);
         //for job company
         Route::resource('/company/job', JobController::class);
+        Route::get('/company/job/{lamaran}/pelamar', [JobController::class, 'pelamar_index']);
+        Route::get('/company/job/{lamaran}/pelamar/{pelamar}', [JobController::class, 'pelamar_show']);
         // Route::resource('/company/lowongan', PostingLowonganController::class);
     });
 });

@@ -47,7 +47,10 @@
                         <b>{{ $job->job_description }}</b>
                     </div>
                     <div class="col-12 d-flex">
-                        <a href="{{ route('job.edit', $job->id) }}" class="btn btn-warning me-2 ms-auto">
+                        <a href="/company/job/{{ $job->id }}/pelamar" class="btn btn-info ms-auto me-2">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <a href="{{ route('job.edit', $job->id) }}" class="btn btn-warning me-2">
                             <i class="bi bi-pencil-square"></i>
                         </a>
                         <form action="{{ route('job.destroy', $job->id) }}" method="post">
