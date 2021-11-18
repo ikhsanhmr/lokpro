@@ -4,7 +4,7 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="{{ route('frontend') }}"><b>Lok</b>Pro</a>
+            <a href="#"><b>Lok</b>Pro</a>
         </div>
 
         <div class="card">
@@ -81,6 +81,7 @@
                         <!-- /.col -->
                         <div class="col">
                             <button type="submit" class="btn btn-primary btn-block">Register</button>
+                            <a href="/"  class="btn btn-default btn-block">Cancel</a>
                         </div>
                         <!-- /.col -->
                     </div>

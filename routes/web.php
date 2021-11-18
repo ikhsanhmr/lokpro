@@ -31,7 +31,11 @@ use App\Http\Controllers\Jobseeker\{
 
 Auth::routes();
 
-Route::view('/', 'frontend.template.frontend')->name('frontend');
+Route::get('/', [FrontendController::class, 'index']);
+Route::get('/jobs', [FrontendController::class, 'jobs']);
+Route::get('/jobs/detail', [FrontendController::class, 'detailsJob']);
+Route::get('/articel', [FrontendController::class, 'articel']);
+Route::get('/articel/detail', [FrontendController::class, 'detailsArticel']);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::middleware('role:company')->group(function () {
@@ -76,6 +80,9 @@ Route::group(['prefix' => 'jobseeker', 'middleware' => 'auth', 'role' => 'jobsee
         Route::get('/', [
             JobseekerProfileController::class, 'index'
         ])->name('jobseeker.profile.index');
+        Route::post('/update-personal-info', [
+            JobseekerProfileController::class, 'updatePersonalInfo'
+        ])->name('jobseeker.profile.update-personal-info');
     });
 });
 

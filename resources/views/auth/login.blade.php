@@ -5,7 +5,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ route('frontend') }}"><b>Lok</b>Pro</a>
+            <a href="#"><b>Lok</b>Pro</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -38,7 +38,7 @@
                         <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
-                    
+
                     <div>
                         <div class="col">
                             <div class="icheck-primary">
@@ -52,6 +52,7 @@
                         <!-- /.col -->
                         <div class="col">
                             <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+                            <a href="/" class="btn btn-default btn-block">Cancel</a>
                         </div>
                         <!-- /.col -->
                     </div>
