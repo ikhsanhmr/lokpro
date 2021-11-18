@@ -15,7 +15,7 @@ class MyApplicationController extends Controller
         $data = [
             'title' => 'Waiting for confirmate',
             'nav_tree' => '',
-            'pelamar' => pelamar()->where('pelamars.status', '=', 'belum')->where('pelamars.pelamar_id', '=', user()->id)->get()
+            'pelamar' => pelamar()->where('pelamars.status', '=', 'menunggu')->where('pelamars.pelamar_id', '=', user()->id)->get()
         ];
 
         return view("backend/jobseeker/belum_dikonfirmasi", $data);

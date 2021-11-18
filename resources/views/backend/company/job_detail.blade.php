@@ -85,6 +85,10 @@
                             <td>
                                 <button id="btn-status" data-id="{{ $pl->id_pelamar }}" class="border border-0" data-bs-toggle="modal" data-bs-target="#primary"><i class="fas fa-cog"></i></button>
                             </td>
+                            @else
+                            <td>
+                                <button class="border border-0"><i class="fas fa-cog"></i></button>
+                            </td>
                             @endif
                             <td>
                                 <span class="badge {{ $pl->status=='menunggu'?'bg-warning':($pl->status=='sudah'?'bg-success':($pl->status='ditolak'?'bg-danger':'bg-primary')) }}"> </span>
