@@ -27,10 +27,10 @@
     </script>
     <section class="section">
         <div class="row" id="myList">
-            @if(empty(lamaran()[0]->id))
+            @if(empty($pelamar[0]->id))
             <span class="text-center">Empty job vacanci</span>
             @endif
-            @foreach(lamaran() as $l)
+            @foreach($pelamar as $l)
             <div class="col-lg-4 pilih">
                 <div class="card">
                     <div class="card-body">
@@ -47,11 +47,15 @@
                             <br>
                             <i>Job location: {{ $l->lokasi_kerja }}</i>
                             <br>
-                            <b>Rp. {{ $l->salary_range }}</b>    
+                            <b>Rp. {{ $l->salary_range }}</b>
+                            <br>
+                            <b>Status: <button class="btn  btn-success btn-sm rounded-pill">Confirmed </button></b>
+                            <br>
+                            <span class="text-success"><i class="fas fa-check"></i> Wait for further confirmation via email, or whatsapp.</span>
                         </p>
-                        <a href="/jobseeker/job_detail?id={{ $l->id_lamaran }}">
-                            <button class="btn btn-primary btn-block btn-sm"><i class="fas fa-eye"></i></button>
-                        </a>
+                        {{-- <a href="/jobseeker/job_detail?id={{ $l->id_pelamar }}">
+                            <button class="btn btn-warning btn-block btn-sm">Waiting For Confirmate</button>
+                        </a> --}}
                     </div>
                 </div>
             </div>

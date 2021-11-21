@@ -100,4 +100,37 @@ class JobController extends Controller
 
         return view('backend/company/pelamar_show', $data);
     }
+
+    public function job_detail(Request $req)
+    {
+
+        if ($req->status == 2 || $req->status == 3) {
+            $pelamar = new Pelamar();
+            $req->status == 2 ? $st = 'ditolak' : $st = 'sudah';
+            $pelamar->where('id', '=', $req->id_pelamar)->update([
+                'status' => $st,
+            ]);
+            return redirect('/company/job_detail/?id=' . $req->id)->with('berhasil', 'Status update successfully');
+        }
+
+        if ($req->status == 'menunggu') {
+            $plr = pelamar()->where('status', '=', 'menunggu')->where('company_id', '=', user()->id)->where('lamaran_id', '=', $req->id)->get();
+        } elseif ($req->status == 'sudah') {
+            $plr = pelamar()->where('status', '=', 'sudah')->where('company_id', '=', user()->id)->where('lamaran_id', '=', $req->id)->get();
+        } elseif ($req->status == 'ditolak') {
+            $plr = pelamar()->where('status', '=', 'ditolak')->where('company_id', '=', user()->id)->where('lamaran_id', '=', $req->id)->get();
+        } else {
+            $plr = pelamar()->where('company_id', '=', user()->id)->where('lamaran_id', '=', $req->id)->get();
+        }
+
+        $data = [
+            'title' => 'Job Detail Page',
+            'lm' => lamaran($req->id),
+            'plr' => $plr,
+            'id'    => $req->id,
+            'status'    =>  $req->status
+        ];
+
+        return view("backend/company/job_detail", $data);
+    }
 }

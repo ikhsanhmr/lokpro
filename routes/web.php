@@ -55,6 +55,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/company/job/{lamaran}/pelamar', [JobController::class, 'pelamar_index']);
         Route::get('/company/job/{lamaran}/pelamar/{pelamar}', [JobController::class, 'pelamar_show']);
         // Route::resource('/company/lowongan', PostingLowonganController::class);
+        Route::get('/company/See_All_Job', [JobController::class, 'index']);
+        Route::get('/company/Post_Job', [JobController::class, 'post']);
+        Route::post('/company/Post_Job', [JobController::class, 'save_post']);
+        Route::get('/company/job_detail', [JobController::class, 'job_detail']);
+        Route::resource('/company/lowongan', PostingLowonganController::class);
     });
 });
 
