@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Jobseeker;
 use App\Http\Controllers\Controller;
 use App\Models\Lamaran;
 use App\Models\Pelamar;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

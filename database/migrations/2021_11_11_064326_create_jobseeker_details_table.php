@@ -17,10 +17,11 @@ class CreateJobseekerDetailsTable extends Migration
             $table->id();
             $table->foreignId('jobseeker_id')->constrained('users', 'id');
             $table->text('bio')->nullable();
-            $table->enum('gender', ['male','female'])->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('profile_picture')->nullable();
+            $table->string('city_id')->nullable();
             $table->timestamps();
         });
     }

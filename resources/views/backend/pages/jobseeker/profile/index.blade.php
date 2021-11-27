@@ -146,20 +146,10 @@
                                                 <label for="province">Province *</label>
                                                 <div class="form-group">
                                                     <select class="form-select" name="province" id="province">
-                                                        <option value="">Choose</option>
-                                                        @if (isset($jobseeker->jobseekerAddress))
-                                                            @foreach ($provinces as $province)
-                                                                @if ($province->id == $jobseeker->jobseekerAddress->province_id)
-                                                                    <option value="{{ $province->id }}" selected>{{ $province->name }}</option>
-                                                                @else
-                                                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                                                @endif
-                                                            @endforeach
-                                                        @else
-                                                            @foreach ($provinces as $province)
-                                                                <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                                            @endforeach
-                                                        @endif
+                                                        <option class="opt_city" value="{{ isset($dt->id_province)?$dt->id_province:'' }}">{{ isset($dt->name_province)?$dt->name_province:'Choose' }}</option>
+                                                        @foreach($provinces as $p)
+                                                            <option value="{{ $p->id }}">{{ $p->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -169,11 +159,7 @@
                                                 <label for="city">City *</label>
                                                 <div id="city-input-field">
                                                     <select class="form-select" name="city" id="city">
-                                                        @if (isset($jobseeker->jobseekerAddress))
-                                                            <option value="{{ $jobseeker->jobseekerAddress->city_id }}">{{ $jobseeker->jobseekerAddress->city->name }}</option>
-                                                        @else
-                                                            <option value="">Choose</option>
-                                                        @endif
+                                                        <option class="opt_city" value="{{ isset($dt->name_city)?$dt->id_cities:'' }}">{{ isset($dt->name_city)?$dt->name_city:'Choose' }}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -234,44 +220,29 @@
 @endsection
 
 @section('script')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <script type="text/javascript">
     $("#change-profile-picture-button").on('click', function (event) {
         $('#profile_picture').trigger('click');
     });
 
     $(document).ready(function() {
-        $("#province option").on('click', function (event) {
-            const getUrl = "{{ route('api.jobseeker.profile.check-cities') }}";
-            const provinceId = $("#province").val();
-
-            $("#city-input-field #city option").each(function() {
-                $(this).remove();
-            });
-
-            $.get(getUrl, {
-                    _method: 'GET',
-                    _token: '{{ csrf_token() }}',
-                    province_id: provinceId,
+        $('#province').on('change', function(){
+            const selectedPackage = $('#province').val();
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                function (response) {
-                    if (response.success) {
-
-                        $('#city-input-field #city').append(
-                            '<option value="">Choose</option>'
-                        );
-
-                        $.each(response.data.cities, function(index) {
-                            $('#city-input-field #city').append(
-                                '<option value="'+ this.id +'">' + this.name + '</option>'
-                            );
-                        });
-                    } else {
-                        console.log('Failed');
-                    }
-
-                    return false;
+                url: "/jobseeker/cities",
+                data: {province_id : selectedPackage},
+                method: "post",
+                // dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    $(".opt_city").remove();
+                    $("#city").append(data);
                 }
-            );
+            });
         });
     });
 </script>

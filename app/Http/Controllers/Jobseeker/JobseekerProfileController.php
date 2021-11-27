@@ -20,18 +20,33 @@ class JobseekerProfileController extends Controller
 {
     private $nav_tree = "jobseeker-profile";
 
-    public function index()
+    public function index(Request $req)
     {
         $jobseeker = User::find(Auth::user()->id);
-        $provinces = DB::table('provinces')->select(['*'])->get();
+        $provinces = DB::table('provinces')->get();
+
+        $dt = DB::table('jobseeker_details')
+            ->join('cities', 'cities.id', '=', 'jobseeker_details.city_id')
+            ->join('provinces', 'provinces.id', '=', 'cities.province_id')
+            ->select('jobseeker_details.*', 'cities.id as id_cities', 'cities.name as name_city', 'cities.province_id', 'provinces.id as id_province', 'provinces.name as name_province')
+            ->where('jobseeker_details.jobseeker_id', '=', Auth::user()->id)
+            ->first();
 
         $data = [
             'nav_tree' => $this->nav_tree,
             'jobseeker' => $jobseeker,
             'provinces' => $provinces,
+            'dt'    => $dt
         ];
 
         return view("backend.pages.jobseeker.profile.index", $data);
+    }
+
+    public function city(Request $req)
+    {
+        $province_id = $req->province_id;
+        $data['city'] = DB::table('cities')->where('province_id', '=', $province_id)->get();
+        return view("backend.pages.jobseeker.profile.city", $data);
     }
 
     public function updatePersonalInfo(Request $request)
@@ -65,6 +80,7 @@ class JobseekerProfileController extends Controller
                         'date_of_birth' => $request->input('date_of_birth'),
                         'phone_number' => $request->input('phone_number'),
                         'profile_picture' => 'filename',
+                        'city_id' => $request->input('city'),
                     ]);
             } else {
                 $jobseeker_detail = JobseekerDetail::create([
@@ -74,6 +90,7 @@ class JobseekerProfileController extends Controller
                     'date_of_birth' => $request->input('date_of_birth'),
                     'phone_number' => $request->input('phone_number'),
                     'profile_picture' => 'filename',
+                    'city_id' => $request->input('city'),
                 ]);
             }
 
@@ -103,9 +120,7 @@ class JobseekerProfileController extends Controller
             'required' => ':attribute is required',
         ];
 
-        $validator = Validator::make($request->all(), [
-
-        ], $messages);
+        $validator = Validator::make($request->all(), [], $messages);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();

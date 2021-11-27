@@ -12,6 +12,7 @@ class City extends Model
     protected $table = "cities";
 
     protected $guarded = ['id'];
+    public $timestamps = false;
 
     public function province()
     {
