@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/jobseeker/job_detail', [VacanciController::class, 'save_pelamar']);
         Route::get('/jobseeker/waiting_for_confirmate', [MyApplicationController::class, 'belum']);
         Route::get('/jobseeker/confirmed', [MyApplicationController::class, 'sudah']);
+        Route::post('/jobseeker/detail', [MyApplicationController::class, 'detail']);
         Route::get('/jobseeker/rejected', [MyApplicationController::class, 'ditolak']);
     });
 });

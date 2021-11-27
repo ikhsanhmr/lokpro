@@ -20,6 +20,7 @@
     <link rel="shortcut icon" href="{{asset('backend/images/favicon.svg')}}" type="image/x-icon">
     <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 {{-- mematikan fitur inpect element dan lainnya di web --}}
