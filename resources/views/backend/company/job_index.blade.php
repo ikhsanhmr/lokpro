@@ -3,6 +3,12 @@
 <div class="page-heading">
     <section class="section">
         <div class="card">
+            @if(session()->has('berhasil'))
+                <div class="alert alert-success alert-dismissible show fade">
+                    {{ session('berhasil') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-8 mb-3">
@@ -49,7 +55,7 @@
                             <br>
                             <b>Rp. {{ $l->salary_range }}</b>    
                         </p>
-                        <a href="/company/job_detail/?id={{ $l->id_lamaran }}">
+                        <a href="{{ route('job.show', $l->id_lamaran) }}">
                             <button class="btn btn-primary btn-block btn-sm"><i class="fas fa-eye"></i></button>
                         </a>
                     </div>

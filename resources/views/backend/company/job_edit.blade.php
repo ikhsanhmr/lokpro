@@ -14,15 +14,16 @@
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
                             <h3 class="text-center mb-5">POST NEW JOB</h3>
-                            <form class="form form-horizontal mt-3" action="/company/Post_Job" method="POST">
+                            <form class="form form-horizontal mt-3" action="{{ route('job.update', $job->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label>Job Position</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text" id="job_position" class="form-control @error('job_position') is-invalid @enderror" name="job_position" placeholder="Job position" value="{{ old('job_position') }}">
+                                            <input type="text" id="job_position" class="form-control @error('job_position') is-invalid @enderror" name="job_position" placeholder="Job position" value="{{ $job->job_position }}">
                                             @error('job_position')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -35,7 +36,7 @@
                                         <div class="col-md-8 form-group">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1">Rp</span>
-                                                <input  class="form-control uang @error('salary_range') is-invalid @enderror" name="salary_range" id="salary_range" placeholder="" aria-label="salary_range" aria-describedby="basic-addon1" value="{{ old('salary_range') }}">
+                                                <input  class="form-control uang @error('salary_range') is-invalid @enderror" name="salary_range" id="salary_range" placeholder="" aria-label="salary_range" aria-describedby="basic-addon1" value="{{ $job->salary_range }}">
                                                 @error('salary_range')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -47,7 +48,7 @@
                                             <label>Job Location</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text" id="job_location" class="form-control @error('job_location') is-invalid @enderror" name="job_location" placeholder="Job location" value="{{ old('job_location') }}">
+                                            <input type="text" id="job_location" class="form-control @error('job_location') is-invalid @enderror" name="job_location" placeholder="Job location" value="{{ $job->job_location }}">
                                             @error('job_location')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -58,7 +59,7 @@
                                             <label>Job description</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <textarea placeholder="Job description" class="form-control @error('job_description') is-invalid @enderror" name="job_description" id="" cols="5" rows="5">{{ old('job_description') }}</textarea>
+                                            <textarea placeholder="Job description" class="form-control @error('job_description') is-invalid @enderror" name="job_description" id="" cols="5" rows="5">{{ $job->job_description }}</textarea>
                                             @error('job_description')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -68,7 +69,7 @@
 
                                         <div class="col-sm-12 d-flex justify-content-end">
                                             <button type="submit" class="btn btn-primary me-1 mb-1">Save</button>
-                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Clear</button>
                                         </div>
                                     </div>
                                 </div>

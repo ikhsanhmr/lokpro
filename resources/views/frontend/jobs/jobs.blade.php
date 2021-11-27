@@ -122,36 +122,37 @@
 
                     <div class="job_lists m-0">
                         <div class="row">
+                            @foreach ($jobs as $js)
                             <div class="col-lg-12 col-md-12">
                                 <div class="single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
                                         <div class="thumb">
-                                            <img src="/frontend/img/svg_icon/1.svg" alt="">
+                                            <img src="/frontend/img/" alt="Kosong">
                                         </div>
                                         <div class="jobs_conetent">
-                                            <a href="/jobs/detail"><h4>Software Engineer</h4></a>
+                                            <a href="/jobs/detail"><h4>{{ $js->job_position }}</h4></a>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
-                                                    <p> <i class="fa fa-map-marker"></i> California, USA</p>
+                                                    <p> <i class="fa fa-map-marker"></i> {{ $js->job_location }}</p>
                                                 </div>
-                                                <div class="location">
+                                                {{-- <div class="location">
                                                     <p> <i class="fa fa-clock-o"></i> Part-time</p>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="jobs_right">
                                         <div class="apply_now">
-                                            <a class="heart_mark" href="#"> <i class="fa fa-heart"></i> </a>
-                                            <a href="job_details.html" class="boxed-btn3">Apply Now</a>
+                                            <a href="/jobs/detail/{{ $js->id }}" class="boxed-btn3">Show</a>
                                         </div>
                                         <div class="date">
-                                            <p>Date line: 31 Jan 2020</p>
+                                            <p>Date Upload: {{ $js->created_at }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12">
+                            @endforeach
+                            {{-- <div class="col-lg-12 col-md-12">
                                 <div class="single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
                                         <div class="thumb">
@@ -296,10 +297,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="row">
-                            <div class="col-lg-12">
+                            {{-- <div class="col-lg-12">
                                 <div class="pagination_wrap">
                                     <ul>
                                         <li><a href="#"> <i class="ti-angle-left"></i> </a></li>
@@ -308,7 +309,7 @@
                                         <li><a href="#"> <i class="ti-angle-right"></i> </a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

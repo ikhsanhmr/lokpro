@@ -33,14 +33,14 @@ Auth::routes();
 
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/jobs', [FrontendController::class, 'jobs']);
-Route::get('/jobs/detail', [FrontendController::class, 'detailsJob']);
+Route::get('/jobs/detail/{slug}', [FrontendController::class, 'detailsJob']);
 Route::get('/articel', [FrontendController::class, 'articel']);
 Route::get('/articel/detail', [FrontendController::class, 'detailsArticel']);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::middleware('role:company')->group(function () {
         // for dashboard company
-        Route::get('/company/dashboard', [DashboardController::class, 'index']);
+        Route::get('/company/dashboard', [DashboardController::class, 'index'])->name('company.dashboard');
 
         // for profile company
         Route::get('/company/Management', [ProfilController::class, 'index']);
@@ -51,6 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/company/contact', [ProfilController::class, 'contact']);
         Route::post('/company/logo', [ProfilController::class, 'logo']);
         //for job company
+        Route::resource('/company/job', JobController::class);
+        Route::get('/company/job/{lamaran}/pelamar', [JobController::class, 'pelamar_index']);
+        Route::get('/company/job/{lamaran}/pelamar/{pelamar}', [JobController::class, 'pelamar_show']);
+        // Route::resource('/company/lowongan', PostingLowonganController::class);
         Route::get('/company/See_All_Job', [JobController::class, 'index']);
         Route::get('/company/Post_Job', [JobController::class, 'post']);
         Route::post('/company/Post_Job', [JobController::class, 'save_post']);

@@ -41,10 +41,10 @@
             </a>
             <ul class="submenu {{ nav_on(['See_All_Job', 'Post_Job']) }}">
                 <li class="submenu-item {{ nav_on(['See_All_Job']) }}">
-                    <a href="/company/See_All_Job">See All</a>
+                    <a href="{{ route('job.index') }}">See All</a>
                 </li>
                 <li class="submenu-item {{ nav_on(['Post_Job']) }}">
-                    <a href="/company/Post_Job">Post New Job</a>
+                    <a href="{{ route('job.create') }}">Post New Job</a>
                 </li>
             </ul>
         </li>
