@@ -21,7 +21,7 @@ class MyApplicationController extends Controller
         return view("backend/jobseeker/belum_dikonfirmasi", $data);
     }
 
-    public function sudah()
+    public function sudah(Request $req)
     {
         $data = [
             'title' => 'Confirmed',
@@ -41,5 +41,11 @@ class MyApplicationController extends Controller
         ];
 
         return view("backend/jobseeker/lamaran_ditolak", $data);
+    }
+
+    public function detail(Request $req)
+    {
+        $detail = pelamars()->where('pelamars.status', '=', $req->status)->where('pelamars.pelamar_id', '=', user()->id)->where('pelamars.id', '=', $req->detail)->first();
+        return json_encode($detail);
     }
 }
