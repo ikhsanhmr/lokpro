@@ -33,7 +33,7 @@ Auth::routes();
 
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/jobs', [FrontendController::class, 'jobs']);
-Route::get('/jobs/detail/{slug}', [FrontendController::class, 'detailsJob']);
+Route::get('/jobs/detail/{post:id}', [FrontendController::class, 'detailsJob']);
 Route::get('/articel', [FrontendController::class, 'articel']);
 Route::get('/articel/detail', [FrontendController::class, 'detailsArticel']);
 
