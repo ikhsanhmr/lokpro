@@ -179,27 +179,43 @@
                                 </form>
                             </div>
                             <div class="tab-pane fade" id="education-contact" role="tabpanel" aria-labelledby="education-contact-tab">
-                                <form id="education-contact-form" class="form mt-4">
+                                <form method="POST" action="/jobseeker/degree" id="education-contact-form" class="form mt-4">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="gender">Education/Degree *</label>
                                                 <select class="form-select" id="degree" name="degree">
-                                                    <option value="0">Choose</option>
+                                                    <option value="">Choose</option>
+                                                    <option {{ isset($dt->degree)?($dt->degree == 'sd' ? 'selected' : ''):'' }} value="sd">SD</option>
+                                                    <option {{ isset($dt->degree)?($dt->degree == 'smp' ? 'selected' : ''):'' }} value="smp">SMP</option>
+                                                    <option {{ isset($dt->degree)?($dt->degree == 'sma' ? 'selected' : ''):'' }} value="sma">SMA</option>
+                                                    <option {{ isset($dt->degree)?($dt->degree == 'd1' ? 'selected' : ''):'' }} value="d1">D1</option>
+                                                    <option {{ isset($dt->degree)?($dt->degree == 'd2' ? 'selected' : ''):'' }} value="d2">D2</option>
+                                                    <option {{ isset($dt->degree)?($dt->degree == 'd3' ? 'selected' : ''):'' }} value="d3">D3</option>
+                                                    <option {{ isset($dt->degree)?($dt->degree == 'd4' ? 'selected' : ''):'' }} value="d4">D4</option>
+                                                    <option {{ isset($dt->degree)?($dt->degree == 's1' ? 'selected' : ''):'' }} value="s1">S1</option>
+                                                    <option {{ isset($dt->degree)?($dt->degree == 's2' ? 'selected' : ''):'' }} value="s2">S2</option>
+                                                    <option {{ isset($dt->degree)?($dt->degree == 's3' ? 'selected' : ''):'' }} value="s3">S3</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-8 col-12">
                                             <div class="form-group">
                                                 <label for="fullname">Institution *</label>
-                                                <input type="text" id="institution_name" name="institution_name" class="form-control" placeholder="Institution Name">
+                                                <input type="text" value="{{ isset($dt->institution_name)?$dt->institution_name:'' }}" id="institution_name" name="institution_name" class="form-control" placeholder="Institution Name">
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-12">
                                             <div class="form-group">
                                                 <label for="gender">Graduation Year *</label>
                                                 <select class="form-select" id="graduation_year" name="graduation_year">
-                                                    <option value="0">Choose</option>
+                                                    <option value="">Choose</option>
+                                                    {{ $date =  date('Y')+1 }}
+                                                    @for($i=0; $i<100; $i++)
+                                                        {{ $date = $date-1 }}
+                                                        <option {{ isset($dt->graduation_year)?($date == $dt->graduation_year ? 'selected':''):'' }} value="{{ $date }}">{{ $date }}</option>
+                                                    @endfor
                                                 </select>
                                             </div>
                                         </div>

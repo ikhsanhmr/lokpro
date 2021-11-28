@@ -49,6 +49,31 @@ class JobseekerProfileController extends Controller
         return view("backend.pages.jobseeker.profile.city", $data);
     }
 
+    public function degree(Request $request)
+    {
+        $messages = [
+            'required' => ':attribute is required',
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'degree' => 'required',
+            'institution_name' => 'required',
+            'graduation_year' => 'required'
+        ], $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $db = new JobseekerDetail();
+            $db->where('jobseeker_id', '=', user()->id)->update([
+                'degree' => $request->degree,
+                'institution_name' => $request->institution_name,
+                'graduation_year' => $request->graduation_year
+            ]);
+            return redirect()->back()->with('success', 'Update successful!');
+        }
+    }
+
     public function updatePersonalInfo(Request $request)
     {
         $messages = [

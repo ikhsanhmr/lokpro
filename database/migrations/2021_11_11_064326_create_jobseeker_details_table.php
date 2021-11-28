@@ -22,6 +22,9 @@ class CreateJobseekerDetailsTable extends Migration
             $table->string('phone_number')->nullable();
             $table->string('profile_picture')->nullable();
             $table->string('city_id')->nullable();
+            $table->string('degree')->nullable();
+            $table->string('institution_name')->nullable();
+            $table->string('graduation_year')->nullable();
             $table->timestamps();
         });
     }

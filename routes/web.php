@@ -74,6 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/jobseeker/detail', [MyApplicationController::class, 'detail']);
         Route::get('/jobseeker/rejected', [MyApplicationController::class, 'ditolak']);
         Route::post('/jobseeker/cities', [JobseekerProfileController::class, 'city']);
+        Route::post('/jobseeker/degree', [JobseekerProfileController::class, 'degree']);
     });
 });
 
