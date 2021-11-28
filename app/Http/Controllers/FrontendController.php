@@ -23,9 +23,11 @@ class FrontendController extends Controller
 
     public function detailsJob($id)
     {
-        return view('frontend.jobs.detail', [
+        $data = [
             "job" => Lamaran::find($id)
-        ]);
+        ];
+
+        return view('frontend.jobs.detail', $data);
     }
 
     public function articel()
