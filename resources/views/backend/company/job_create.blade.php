@@ -35,7 +35,7 @@
                                         <div class="col-md-8 form-group">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1">Rp</span>
-                                                <input  class="form-control uang @error('salary_range') is-invalid @enderror" name="salary_range" id="salary_range" placeholder="" aria-label="salary_range" aria-describedby="basic-addon1" value="{{ old('salary_range') }}">
+                                                <input type="text" class="form-control uang @error('salary_range') is-invalid @enderror" name="salary_range" id="salary_range" placeholder="" aria-label="salary_range" aria-describedby="basic-addon1" value="{{ old('salary_range') }}">
                                                 @error('salary_range')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -83,9 +83,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/igorescobar/jQuery-Mask-Plugin/1ef022ab/dist/jquery.mask.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
+	// $(document).ready(function(){
 	    // Format mata uang.
-	    $( '.uang' ).mask('0.000.000.000.000.000.000', {reverse: true});
-	})
+	    // $( '.uang' ).mask('0.000.000.000.000.000.000', {reverse: true});
+	// })
 </script>
 @endsection

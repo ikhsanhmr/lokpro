@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/company/profile', [ProfilController::class, 'index']);
         Route::post('/company/profile', [ProfilController::class, 'edit']);
         Route::post('/company/sosmed', [ProfilController::class, 'sosmed']);
-        Route::post('/company/email', [ProfilController::class, 'email']);
+        Route::post('/company/email', [ProfilController::class, 'email']); 
         Route::post('/company/contact', [ProfilController::class, 'contact']);
         Route::post('/company/logo', [ProfilController::class, 'logo']);
         //for job company

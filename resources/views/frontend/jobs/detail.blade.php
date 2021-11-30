@@ -130,7 +130,7 @@
                             <ul>
                                 <li>Published on: <span>{{ $job->created_at }}</span></li>
                                 <li>Vacancy: <span>2 Position</span></li>
-                                <li>Salary: <span>{{ $job->salary_range }}/y</span></li>
+                                <li>Salary: <span>Rp. {{ $job->salary_range }}</span></li>
                                 <li>Location: <span>{{ $job->job_location }}</span></li>
                                 <li>Job Nature: <span> Full-time</span></li>
                             </ul>

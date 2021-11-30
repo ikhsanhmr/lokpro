@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
 
             $province_id = Province::orderBy('id', 'desc')->first();
             $cities = $wilayah[$provice];
-            // create data cities
+            // create data citi
             for ($j = 0; $j < count($wilayah[$provice]); $j++) {
                 City::create([
                     'name' => $cities[$j],
