@@ -15,7 +15,7 @@
                         <h4 class="card-title">All Job Vacanci</h4>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <input class="form-control" id="search" type="text" placeholder="Search">
+                        <input class="form-control" id="search" name="search" type="text" placeholder="Search">
                     </div>
                 </div>
             </div>

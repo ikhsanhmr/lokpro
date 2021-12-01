@@ -21,6 +21,18 @@
                             <td>: {{ $lm->lokasi_kerja }}</td>
                         </tr>
                         <tr>
+                            <td class="text-bold-500">Tipe Loker</td>
+                            <td>: {{ $lm->tipe_loker }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-bold-500">Tipe Pekerjaan</td>
+                            <td>: {{ $lm->tipe_pekerjaan }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-bold-500">Remote</td>
+                            <td>: {{ $lm->remote }}</td>
+                        </tr>
+                        <tr>
                             <td colspan="2" class="text-bold-500 text-center">Job Description</td>
                         </tr>
                         <tr>

@@ -55,10 +55,77 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-4">
+                                            <label>Tipe Loker</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" value="Kerja" name="tipe_loker" id="tipe_loker_kerja" checked>
+                                                <label class="form-check-label" for="tipe_loker_kerja">
+                                                    Kerja
+                                                </label>
+                                            </div>
+                                            <div class="form-check mt-2">
+                                                <input class="form-check-input" type="radio" value="Magang" name="tipe_loker" id="tipe_loker_magang">
+                                                <label class="form-check-label" for="tipe_loker_magang">
+                                                    Magang
+                                                </label>
+                                            </div>
+                                            @error('tipe_loker')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Tipe Pekerjaan</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" value="Full Time" name="tipe_pekerjaan" id="tipe_pekerjaan_full" checked>
+                                                <label class="form-check-label" for="tipe_pekerjaan_full">
+                                                    Full Time
+                                                </label>
+                                            </div>
+                                            <div class="form-check mt-2">
+                                                <input class="form-check-input" type="radio" value="Part Time" name="tipe_pekerjaan" id="tipe_pekerjaan_part">
+                                                <label class="form-check-label" for="tipe_pekerjaan_part">
+                                                    Part Time
+                                                </label>
+                                            </div>
+                                            @error('tipe_loker')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Remote</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" value="Work From Office" name="remote" id="remote_wfo" checked>
+                                                <label class="form-check-label" for="remote_wfo">
+                                                    WFO
+                                                </label>
+                                            </div>
+                                            <div class="form-check mt-2">
+                                                <input class="form-check-input" type="radio" value="Work From Home" name="remote" id="remote_wfh">
+                                                <label class="form-check-label" for="remote_wfh">
+                                                    WFH
+                                                </label>
+                                            </div>
+                                            @error('tipe_loker')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-4">
                                             <label>Job description</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <textarea placeholder="Job description" class="form-control @error('job_description') is-invalid @enderror" name="job_description" id="" cols="5" rows="5">{{ old('job_description') }}</textarea>
+                                            <textarea placeholder="Job description" class="form-control @error('job_description') is-invalid @enderror" name="job_description" id="job_description" cols="5" rows="5">{{ old('job_description') }}</textarea>
+                                            <trix-editor class="trix-content"></trix-editor>
                                             @error('job_description')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -88,4 +155,7 @@
 	    $( '.uang' ).mask('0.000.000.000.000.000.000', {reverse: true});
 	})
 </script>
+
+<link rel="stylesheet" type="text/css" href="trix.css">
+<script type="text/javascript" src="trix.js"></script>
 @endsection

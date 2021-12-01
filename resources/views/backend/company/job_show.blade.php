@@ -41,6 +41,24 @@
                         <b>{{ $job->job_location }}</b>
                     </div>
                     <div class="col-md-2 mb-3">
+                        <p>Tipe Loker</p>
+                    </div>
+                    <div class="col-md-10 mb-3">
+                        <b>{{ $job->tipe_loker }}</b>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <p>Tipe Pekerjaan</p>
+                    </div>
+                    <div class="col-md-10 mb-3">
+                        <b>{{ $job->tipe_pekerjaan }}</b>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <p>Remote</p>
+                    </div>
+                    <div class="col-md-10 mb-3">
+                        <b>{{ $job->remote }}</b>
+                    </div>
+                    <div class="col-md-2 mb-3">
                         <p>Job Description</p>
                     </div>
                     <div class="col-md-10 mb-3">
