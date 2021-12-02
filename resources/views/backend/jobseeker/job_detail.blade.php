@@ -25,15 +25,15 @@
                             <tbody>
                                 <tr>
                                     <td class="text-bold-500">Company Name</td>
-                                    <td>: {{ $lm->name }}</td>
+                                    <td>: <b>{{ $lm->name }}</b></td>
                                 </tr>
                                 <tr>
                                     <td class="text-bold-500">Company Location</td>
-                                    <td>: {{ $lm->company_location }}</td>
+                                    <td>: <b>{{ $lm->company_location }}</b></td>
                                 </tr>
                                 <tr>
                                     <td class="text-bold-500">Company Culture</td>
-                                    <td>: {{ $lm->company_culture }}</td>
+                                    <td>: <b>{{ $lm->company_culture }}</b></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -42,37 +42,36 @@
                             <tbody>
                                 <tr>
                                     <td class="text-bold-500">Job Position</td>
-                                    <td>: {{ $lm->job_position }}</td>
+                                    <td>: <b>{{ $lm->job_position }}</b></td>
                                 </tr>
                                 <tr>
                                     <td class="text-bold-500">Salary Range</td>
-                                    <td>: {{ $lm->salary_range }}</td>
+                                    <td>: <b>{{ $lm->salary_range }}</b></td>
                                 </tr>
                                 <tr>
                                     <td class="text-bold-500">Job Location</td>
-                                    <td>: {{ $lm->lokasi_kerja }}</td>
+                                    <td>: <b>{{ $lm->lokasi_kerja }}</b></td>
                                 </tr>
                                 <tr>
                                     <td class="text-bold-500">Tipe Loker</td>
-                                    <td>: {{ $lm->tipe_loker }}</td>
+                                    <td>: <b>{{ $lm->tipe_loker }}</b></td>
                                 </tr>
                                 <tr>
                                     <td class="text-bold-500">Tipe Pekerjaan</td>
-                                    <td>: {{ $lm->tipe_pekerjaan }}</td>
+                                    <td>: <b>{{ $lm->tipe_pekerjaan }}</b></td>
                                 </tr>
                                 <tr>
                                     <td class="text-bold-500">Remote</td>
-                                    <td>: {{ $lm->remote }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="text-bold-500 text-center">Job Description</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class=""><?= nl2br(htmlspecialchars($lm->job_description)); ?></td>
+                                    <td>: <b>{{ $lm->remote }}</b></td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="job-description mt-3">
+                            <b>Job Description</b>
+                            <p class="mt-1"><?= nl2br(htmlspecialchars($lm->job_description)); ?></p>
+                        </div>
                     </div>
+                    <hr>
                     <h3 class="text-center mt-5 mb-3">Apply Now</h3>
                     <div class="card-content">
                         <div class="card-body">

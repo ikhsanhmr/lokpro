@@ -56,6 +56,72 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-4">
+                                            <label>Tipe Loker</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" value="kerja" name="tipe_loker" id="tipe_loker_kerja" @if($job->tipe_loker == 'kerja') checked @endif>
+                                                <label class="form-check-label" for="tipe_loker_kerja">
+                                                    Kerja
+                                                </label>
+                                            </div>
+                                            <div class="form-check mt-2">
+                                                <input class="form-check-input" type="radio" value="magang" name="tipe_loker" id="tipe_loker_magang" @if($job->tipe_loker == 'magang') checked @endif>
+                                                <label class="form-check-label" for="tipe_loker_magang">
+                                                    Magang
+                                                </label>
+                                            </div>
+                                            @error('tipe_loker')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Tipe Pekerjaan</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" value="fulltime" name="tipe_pekerjaan" id="tipe_pekerjaan_full" @if($job->tipe_pekerjaan == 'fulltime') checked @endif>
+                                                <label class="form-check-label" for="tipe_pekerjaan_full">
+                                                    Full Time
+                                                </label>
+                                            </div>
+                                            <div class="form-check mt-2">
+                                                <input class="form-check-input" type="radio" value="parttime" name="tipe_pekerjaan" id="tipe_pekerjaan_part" @if($job->tipe_pekerjaan == 'parttime') checked @endif>
+                                                <label class="form-check-label" for="tipe_pekerjaan_part">
+                                                    Part Time
+                                                </label>
+                                            </div>
+                                            @error('tipe_loker')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Remote</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" value="wfo" name="remote" id="remote_wfo" @if($job->remote == 'wfo') checked @endif>
+                                                <label class="form-check-label" for="remote_wfo">
+                                                    WFO
+                                                </label>
+                                            </div>
+                                            <div class="form-check mt-2">
+                                                <input class="form-check-input" type="radio" value="wfh" name="remote" id="remote_wfh" @if($job->remote == 'wfh') checked @endif>
+                                                <label class="form-check-label" for="remote_wfh">
+                                                    WFH
+                                                </label>
+                                            </div>
+                                            @error('tipe_loker')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-4">
                                             <label>Job description</label>
                                         </div>
                                         <div class="col-md-8 form-group">

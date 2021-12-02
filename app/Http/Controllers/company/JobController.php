@@ -76,7 +76,10 @@ class JobController extends Controller
             'job_position' => 'required',
             'salary_range' => 'required',
             'job_location' => 'required',
-            'job_description' => 'required'
+            'job_description' => 'required',
+            'tipe_loker' => 'required',
+            'tipe_pekerjaan' => 'required',
+            'remote' => 'required'
         ]);
 
         $lamaran = Lamaran::find($id);
