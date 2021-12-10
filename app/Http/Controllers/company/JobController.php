@@ -33,6 +33,7 @@ class JobController extends Controller
     {
         $req->validate([
             'job_position' => 'required',
+            'job_nature' => 'required',
             'salary_range' => 'required',
             'job_location' => 'required',
             'job_description' => 'required'
@@ -41,6 +42,7 @@ class JobController extends Controller
         $lamaran = new Lamaran();
         $lamaran->company_id = user()->id;
         $lamaran->job_position = $req->job_position;
+        $lamaran->job_nature = $req->job_nature;
         $lamaran->salary_range = $req->salary_range;
         $lamaran->job_location = $req->job_location;
         $lamaran->job_description = $req->job_description;
@@ -84,8 +86,15 @@ class JobController extends Controller
         return redirect('/company/job')->with('berhasil', 'Successfully remove data');
     }
 
-    public function pelamar_index(Lamaran $lamaran)
+    public function pelamar_index(Lamaran $lamaran, Request $req)
     {
+        if (isset($req->status)) {
+            $pelamar = new Pelamar();
+            $pelamar->where('id', '=', $lamaran->id)->update([
+                'status' => $req->status,
+            ]);
+            return redirect("/company/job/" . $lamaran->id . '/pelamar');
+        }
         $data = [
             'lamaran' => $lamaran,
             'pelamars' => Pelamar::where('lamaran_id', $lamaran->id)->get()
