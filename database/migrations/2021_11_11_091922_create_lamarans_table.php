@@ -17,6 +17,7 @@ class CreateLamaransTable extends Migration
             $table->id();
             $table->string('company_id');
             $table->string('job_position');
+            $table->string('job_nature');
             $table->string('salary_range');
             $table->string('job_location');
             $table->text('job_description');

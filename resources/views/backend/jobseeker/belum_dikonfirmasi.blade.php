@@ -4,10 +4,10 @@
     <section class="section">
         <div class="card">
             @if(session()->has('berhasil'))
-                <div class="alert alert-success alert-dismissible show fade">
-                        {{ session('berhasil') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+            <div class="alert alert-success alert-dismissible show fade">
+                {{ session('berhasil') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             @endif
             <div class="card-header">
                 <div class="row">
@@ -22,13 +22,13 @@
         </div>
     </section>
     <script>
-        $(document).ready(function(){
-          $("#search").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myList .pilih").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        $(document).ready(function() {
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myList .pilih").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
             });
-          });
         });
     </script>
     <section class="section">
@@ -66,7 +66,7 @@
                             <b>Status: <button class="btn  btn-warning btn-sm rounded-pill">Waiting For Confirmate</button></b>
                         </p>
                         {{-- <a href="/jobseeker/job_detail?id={{ $l->id_pelamar }}">
-                            <button class="btn btn-warning btn-block btn-sm">Waiting For Confirmate</button>
+                        <button class="btn btn-warning btn-block btn-sm">Waiting For Confirmate</button>
                         </a> --}}
                     </div>
                 </div>
@@ -84,17 +84,21 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             url: "/jobseeker/detail",
-            data: {detail : detail, status : 'menunggu'},
+            data: {
+                detail: detail,
+                status: 'menunggu'
+            },
             method: "post",
             dataType: "json",
             success: function(data) {
                 $('#myModalLabel17').text(data.job_position);
-                $('#image').attr('src','/backend/images/logocompany/'+data.logo);
-                $('#statusss').text('Status : '+data.status);
+                $('#image').attr('src', '/backend/images/logocompany/' + data.logo);
+                $('#statusss').text('Status : ' + data.status);
                 $('#company_name').text(data.name);
                 $('#company_location').text(data.company_location);
                 $('#company_culture').text(data.company_culture);
                 $('#job_position').text(data.job_position);
+                $('#job_nature').text(data.job_nature);
                 $('#salary_range').text(data.salary_range);
                 $('#job_location').text(data.lokasi_kerja);
                 $('#description').text(data.job_description);
@@ -110,16 +114,13 @@
         Large Modal
     </button> --}}
     <!--large size Modal -->
-    <div class="modal fade text-left" id="large" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel17" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
-            role="document">
+    <div class="modal fade text-left" id="large" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <img height="60px" width="60px" id="image" src="" alt="logo">
                     <h4 class="modal-title" id="myModalLabel17">Large Modal</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal"
-                        aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <i data-feather="x"></i>
                     </button>
                 </div>
@@ -137,6 +138,10 @@
                             <tr>
                                 <td class="text-bold-500">Job Position</td>
                                 <td id="job_position"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-bold-500">Job Nature</td>
+                                <td id="job_nature"></td>
                             </tr>
                             <tr>
                                 <td class="text-bold-500">Salary Range</td>
@@ -160,8 +165,7 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light-secondary"
-                        data-bs-dismiss="modal">
+                    <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Close</span>
                     </button>

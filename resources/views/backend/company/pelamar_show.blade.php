@@ -4,10 +4,10 @@
     <section class="section">
         <div class="card">
             @if(session()->has('berhasil'))
-                <div class="alert alert-success alert-dismissible show fade">
-                    {{ session('berhasil') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+            <div class="alert alert-success alert-dismissible show fade">
+                {{ session('berhasil') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             @endif
             <div class="card-header">
                 <div class="row">
@@ -107,7 +107,7 @@
                         Status
                     </div>
                     <div class="col-md-10 mb-3">
-                        <b>{{ $pelamar->status }}</b>
+                        <b>{{ $pelamar->status == 'menunggu' ? 'Waiting for confirmed' : ($pelamar->status == 'sudah' ? 'Confirmed' : 'Rejected') }}</b>
                     </div>
                     {{-- Created At --}}
                     <div class="col-md-2 mb-3">

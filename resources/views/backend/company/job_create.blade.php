@@ -30,6 +30,26 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-4">
+                                            <label>Job Nature</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <select name="job_nature" id="job_nature" class="form-control @error('job_nature') is-invalid @enderror">
+                                                <option value="">Select</option>
+                                                <option value="Full-time">Full-time</option>
+                                                <option value="Part-time">Part-time</option>
+                                                <option value="Contact">Contact</option>
+                                                <option value="Temporary">Temporary</option>
+                                                <option value="Volunteer">Volunteer</option>
+                                                <option value="Intership">Intership</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                            @error('job_nature')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-4">
                                             <label>Salary Range</label>
                                         </div>
                                         <div class="col-md-8 form-group">
