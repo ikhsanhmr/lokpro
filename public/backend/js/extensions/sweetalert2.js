@@ -16,6 +16,12 @@ document.getElementById('title').addEventListener('click', (e) => {
         'question'
       )
 })
+document.getElementById('push-success').addEventListener('click', (e) => {
+    Swal.fire({
+        icon: "success",
+        title: "Success"
+    })
+})
 document.getElementById('success').addEventListener('click', (e) => {
     Swal.fire({
         icon: "success",

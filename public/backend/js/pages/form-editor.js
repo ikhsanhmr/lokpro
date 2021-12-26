@@ -26,7 +26,30 @@ new Quill("#full", {
             ], 
             ["direction", { align: [] }], 
             ["link", "image", "video"], 
-            ["clean"]] 
+            ["clean"]] ,
         }, 
         theme: "snow" 
-    })
+    }
+);
+
+
+// untuk form artikel
+new Quill("#formartikel", { 
+    bounds: "#full-container .editor", 
+    modules: { 
+        toolbar: [
+            ["bold", "italic", "underline", "strike"],
+            [
+                { script: "super" }, 
+                { script: "sub" }
+            ], 
+            [
+                { list: "ordered" }, 
+                { list: "bullet" }, 
+                { indent: "-1" }, 
+                { indent: "+1" }
+            ], 
+            ["direction", { align: [] }]] 
+        }, 
+        theme: "snow" 
+});

@@ -98,10 +98,8 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="d-flex align-items-center">
-                                        <svg class="bi text-primary" width="32" height="32" fill="blue"
-                                                style="width:10px">
-                                            <use
-                                                xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
+                                        <svg class="bi text-primary" width="32" height="32" fill="blue" style="width:10px">
+                                            <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
                                         </svg>
                                         <h5 class="mb-0 ms-3">Europe</h5>
                                     </div>
@@ -116,10 +114,8 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="d-flex align-items-center">
-                                        <svg class="bi text-success" width="32" height="32" fill="blue"
-                                                style="width:10px">
-                                            <use
-                                                xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
+                                        <svg class="bi text-success" width="32" height="32" fill="blue" style="width:10px">
+                                            <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
                                         </svg>
                                         <h5 class="mb-0 ms-3">America</h5>
                                     </div>
@@ -134,10 +130,8 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="d-flex align-items-center">
-                                        <svg class="bi text-danger" width="32" height="32" fill="blue"
-                                                style="width:10px">
-                                            <use
-                                                xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
+                                        <svg class="bi text-danger" width="32" height="32" fill="blue" style="width:10px">
+                                            <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
                                         </svg>
                                         <h5 class="mb-0 ms-3">Indonesia</h5>
                                     </div>
@@ -161,40 +155,40 @@
                             <div class="table-responsive">
                                 <table class="table table-hover table-lg">
                                     <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Comment</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Comment</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="col-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar avatar-md">
-                                                    <img src="backend/images/faces/5.jpg">
+                                        <tr>
+                                            <td class="col-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar avatar-md">
+                                                        <img src="backend/images/faces/5.jpg">
+                                                    </div>
+                                                    <p class="font-bold ms-3 mb-0">Si Cantik</p>
                                                 </div>
-                                                <p class="font-bold ms-3 mb-0">Si Cantik</p>
-                                            </div>
-                                        </td>
-                                        <td class="col-auto">
-                                            <p class=" mb-0">Congratulations on your graduation!</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar avatar-md">
-                                                    <img src="backend/images/faces/2.jpg">
+                                            </td>
+                                            <td class="col-auto">
+                                                <p class=" mb-0">Congratulations on your graduation!</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar avatar-md">
+                                                        <img src="backend/images/faces/2.jpg">
+                                                    </div>
+                                                    <p class="font-bold ms-3 mb-0">Si Ganteng</p>
                                                 </div>
-                                                <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                            </div>
-                                        </td>
-                                        <td class="col-auto">
-                                            <p class=" mb-0">Wow amazing design! Can you make another
-                                                tutorial for
-                                                this design?</p>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="col-auto">
+                                                <p class=" mb-0">Wow amazing design! Can you make another
+                                                    tutorial for
+                                                    this design?</p>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

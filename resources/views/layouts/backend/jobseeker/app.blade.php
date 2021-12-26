@@ -13,7 +13,11 @@
     <link rel="stylesheet" href="{{asset('backend/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('backend/vendors/bootstrap-icons/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('backend/css/app.css')}}">
-    <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+    <link rel="stylesheet" href="/backend/vendors/fontawesome/all.min.css">
+    <link rel="stylesheet" href="/backend/vendors/quill/quill.bubble.css">
+    <link rel="stylesheet" href="/backend/vendors/quill/quill.snow.css">
+    <link rel="stylesheet" href="/backend/vendors/sweetalert2/sweetalert2.min.css">
+    <link rel="shortcut icon" href="/backend/images/favicon.svg" type="image/x-icon">
     @yield('spesifik_link')
     @yield('style')
 </head>
@@ -36,6 +40,23 @@
     @yield('script')
     <script src="/backend/vendors/fontawesome/all.min.js"></script>
     <script src="/backend/js/main.js"></script>
+
+    <script src="/backend/vendors/quill/quill.min.js"></script>
+    <script src="/backend/js/pages/form-editor.js"></script>
+    <script src="/backend/vendors/tinymce/tinymce.min.js"></script>
+    <script src="/backend/vendors/tinymce/plugins/code/plugin.min.js"></script>
+    <script src="/backend/js/extensions/sweetalert2.js"></script>
+    <script src="/backend/vendors/sweetalert2/sweetalert2.all.min.js"></script>
+    <script>
+        tinymce.init({
+            // selector: '#default'
+        });
+        tinymce.init({
+            selector: '#dark',
+            // toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent code',
+            // plugins: 'code'
+        });
+    </script>
 </body>
 
 </html>

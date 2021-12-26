@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/company/profile', [ProfilController::class, 'index']);
         Route::post('/company/profile', [ProfilController::class, 'edit']);
         Route::post('/company/sosmed', [ProfilController::class, 'sosmed']);
-        Route::post('/company/email', [ProfilController::class, 'email']); 
+        Route::post('/company/email', [ProfilController::class, 'email']);
         Route::post('/company/contact', [ProfilController::class, 'contact']);
         Route::post('/company/logo', [ProfilController::class, 'logo']);
         //for job company
@@ -75,13 +75,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/jobseeker/rejected', [MyApplicationController::class, 'ditolak']);
         Route::post('/jobseeker/cities', [JobseekerProfileController::class, 'city']);
         Route::post('/jobseeker/degree', [JobseekerProfileController::class, 'degree']);
+
+        // untuk dashboard
+        Route::get('/jobseeker/dashboard', [JobseekerDashboardController::class, 'index'])->name('jobseeker.dashboard');
+        Route::post('/jobseeker/dashboard', [JobseekerDashboardController::class, 'postArtikel']);
     });
 });
 
 Route::group(['prefix' => 'jobseeker', 'middleware' => 'auth', 'role' => 'jobseeker'], function () {
-    Route::get('/dashboard', [
-        JobseekerDashboardController::class, 'index'
-    ])->name('jobseeker.dashboard');
 
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [
