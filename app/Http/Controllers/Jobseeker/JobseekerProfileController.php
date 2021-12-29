@@ -14,7 +14,7 @@ use App\Models\{
     JobseekerDetail,
     JobseekerAddress,
 };
-
+use Illuminate\Support\Facades\File;
 
 class JobseekerProfileController extends Controller
 {
@@ -88,33 +88,38 @@ class JobseekerProfileController extends Controller
             'address_description' => 'required',
             'province' => 'required',
             'city' => 'required',
+            'profile_picture' => 'required|image'
         ], $messages);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
+            $filename = $request->file('profile_picture')->hashName();
             $jobseeker = User::find(Auth::user()->id);
             $jobseeker->name = $request->input('fullname');
             $jobseeker->save();
 
             if (isset($jobseeker->jobseekerDetail)) {
+                File::delete('backend/images/faces/' . jobseeker()->profile_picture);
+                $logo = $request->file('profile_picture')->move('backend/images/faces', $filename);
                 $jobseeker_detail = JobseekerDetail::where('jobseeker_id', '=', $jobseeker->id)
                     ->update([
                         'bio' => $request->input('bio'),
                         'gender' => $request->input('gender'),
                         'date_of_birth' => $request->input('date_of_birth'),
                         'phone_number' => $request->input('phone_number'),
-                        'profile_picture' => 'filename',
+                        'profile_picture' => $logo->getFilename(),
                         'city_id' => $request->input('city'),
                     ]);
             } else {
+                $logo = $request->file('profile_picture')->move('backend/images/faces', $filename);
                 $jobseeker_detail = JobseekerDetail::create([
                     'jobseeker_id' => $jobseeker->id,
                     'bio' => $request->input('bio'),
                     'gender' => $request->input('gender'),
                     'date_of_birth' => $request->input('date_of_birth'),
                     'phone_number' => $request->input('phone_number'),
-                    'profile_picture' => 'filename',
+                    'profile_picture' => $logo->getFilename(),
                     'city_id' => $request->input('city'),
                 ]);
             }

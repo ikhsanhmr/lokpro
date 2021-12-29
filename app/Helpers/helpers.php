@@ -14,6 +14,17 @@ function user()
     // return Auth::user();
 }
 
+function jobseeker()
+{
+    // mengambil data users dan users
+    return DB::table('users')
+        ->join('jobseeker_details', 'jobseeker_details.jobseeker_id', '=', 'users.id')
+        ->select('jobseeker_details.*', 'users.id as id_user', 'users.role', 'users.name', 'users.email', 'users.password')
+        ->where('users.id', '=', Auth::user()->id)
+        ->first();
+    // return Auth::user();
+}
+
 function lamaran_company()
 {
     // mengambil data lamaran company
