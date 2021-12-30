@@ -104,7 +104,7 @@ class JobseekerDashboardController extends Controller
         if ($comment->where('artikel_id', '=', $artikel_id)->count() > 0) {
             $result = $comment
                 ->join('artikels', 'comments.artikel_id', '=', 'artikels.id')
-                ->join('users', 'users.id', '=', 'artikels.user_id')
+                ->join('users', 'users.id', '=', 'comments.user_id')
                 ->join('jobseeker_details', 'jobseeker_details.jobseeker_id', '=', 'users.id')
                 ->where('artikels.id', '=', $artikel_id)
                 ->select('users.*', 'artikels.*', 'jobseeker_details.*', 'users.id as id_user', 'artikels.id as id_artikel', 'jobseeker_details.id as id_jobseeker', 'comments.*', 'comments.id as id_comments')
