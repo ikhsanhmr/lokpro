@@ -28,8 +28,8 @@
                      <h2>{{ $artikel->subject }}
                      </h2>
                      <ul class="blog-info-link mt-3 mb-4">
-                        <li><a href="#"><i class="fa fa-user"></i>Kategori</a></li>
-                        <li><a href="#"><i class="fa fa-comments"></i>0 Comment</a></li>
+                        <li><i class="fa fa-user"></i>{{ $artikel->created_at }}</li>
+                        <li><a href="#comment"><i class="fa fa-comments"></i>0 Comment</a></li>
                      </ul>
                      <div class="excert">
                         {!! $artikel->description !!}
@@ -42,10 +42,11 @@
                         <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                      </div>
                      <ul class="social-icons">
-                        <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/articel/{{ $artikel->id }}"><i class="fa fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com/intent/tweet?text=Share+this+post&url=http://127.0.0.1:8000/articel/{{ $artikel->id }}"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.linkedin.com/sharing/share-offsite/?mini=true&url=http://127.0.0.1:8000/articel/{{ $artikel->id }}"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://telegram.me/share/url?url=http://127.0.0.1:8000/articel/{{ $artikel->id }}"><i class="fa fa-telegram"></i></a></li>
+                        <li><a href="https://wa.me/?text=http://127.0.0.1:8000/articel/{{ $artikel->id }}"><i class="fa fa-whatsapp"></i></a></li>
                      </ul>
                   </div>
                   <div class="navigation-area">
@@ -106,7 +107,7 @@
                      </div>
                   </div>
                </div>
-               <div class="comments-area">
+               <div class="comments-area" id="comment">
                   <h4>0 Comments</h4>
                   @foreach ($komentars as $komentar)
                   <div class="comment-list">
@@ -138,7 +139,8 @@
                </div>
                <div class="comment-form">
                   <h4>Leave a Reply</h4>
-                  <form class="form-contact comment_form" action="#" id="commentForm">
+                  <form class="form-contact comment_form" id="commentForm" method="POST">
+                     @csrf
                      <div class="row">
                         <div class="col-12">
                            <div class="form-group">

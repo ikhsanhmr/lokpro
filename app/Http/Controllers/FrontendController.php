@@ -52,12 +52,24 @@ class FrontendController extends Controller
         //mengambil komentar
         $komentar = comment::where('artikel_id', $artikel->id)->get();
 
+        //share
+        $shareComponent = \Share::page(
+            'http://127.0.0.1:8000/articel/' . $artikel->id,
+            'Share this post',
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()        
+        ->reddit();
+
         $data = [
             "artikel" => $artikel,
             "artikel_sebelumnya" => $artikel_sebelumnya ?? null,
             "artikel_setelahnya" => $artikel_setelahnya ?? null,
             "komentars" => $komentar,
-            
+            "shareComponent" => $shareComponent
         ];
         return view('frontend.articel.detail', $data);
     }

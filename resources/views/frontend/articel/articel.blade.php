@@ -41,7 +41,15 @@
                                     <li><a href="#"><i class="fa fa-user"></i>Kategori</a></li>
                                     <li><a href="#"><i class="fa fa-comments"></i>0 Komentar</a></li>
                                 </ul>
+                                <ul class="social-icons d-flex">
+                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/articel/{{ $artikel->id }}"><i class="fa fa-facebook-f"></i></a></li>
+                                    <li><a href="https://twitter.com/intent/tweet?text=Share+this+post&url=http://127.0.0.1:8000/articel/{{ $artikel->id }}"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/sharing/share-offsite/?mini=true&url=http://127.0.0.1:8000/articel/{{ $artikel->id }}"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="https://telegram.me/share/url?url=http://127.0.0.1:8000/articel/{{ $artikel->id }}"><i class="fa fa-telegram"></i></a></li>
+                                    <li><a href="https://wa.me/?text=http://127.0.0.1:8000/articel/{{ $artikel->id }}"><i class="fa fa-whatsapp"></i></a></li>
+                                 </ul>
                             </div>
+                            
                         </article>
                         @endforeach
 
