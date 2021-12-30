@@ -140,14 +140,14 @@
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end">
                                         @if($a->user_id == user()->id)
-                                        <a class="dropdown-item" href="#">
+                                        <a onclick="window.location.href= '/jobseeker/artikel_delete?id=<?= $a->id_artikel ?>'" class="dropdown-item" href="#">
                                             <i class="fas fa-trash"></i>
                                             <span style="margin-left: 15%;">Delete</span>
                                         </a>
-                                        <a class="dropdown-item" href="#">
+                                        <!-- <a class="dropdown-item" href="#">
                                             <i class="fas fa-edit"></i>
                                             <span style="margin-left: 15%;">Edit</span>
-                                        </a>
+                                        </a> -->
                                         @endif
                                         <a class="dropdown-item" data-koment="{{ $a->id_artikel }}" onclick="tampilkomen(this)" href="#" data-bs-toggle="modal" data-bs-target="#showartikel">
                                             <i class="fas fa-eye"></i>
@@ -197,7 +197,7 @@
                             </div>
                             <div class="col-4">
                                 <button type="button" data-koment="{{ $a->id_artikel }}" onclick="tampilkomen(this)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showartikel">
-                                    <i class="fas fa-comment"></i> 32
+                                    <i class="fas fa-comment"></i> <span class="comment<?= $a->id_artikel; ?>"><?= $comment->where('comments.artikel_id', '=', $a->id_artikel)->count(); ?></span>
                                 </button>
                             </div>
                             <div class="col-4">
@@ -228,7 +228,7 @@
                         <h3 id="modal_name" class="mt-2"></h3>
                     </div>
                     <div class="col-2 text-center">
-                        <button type="button" class="btn-close mt-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button id="stop_interval" type="button" class="btn-close mt-2" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                 </div>
             </div>
@@ -247,6 +247,7 @@
                 <div class="row">
                     <div class="col-12">
                         <h3 id="label-comment">Komentar:</h3>
+                        <span style="position: absolute;visibility: hidden;" id="id-artikel"></span>
                     </div>
                     <div class="row mb-4">
                         <div class="col-2">
@@ -256,37 +257,39 @@
                             <input id="comment" type="text" class="form-control" placeholder="Type your answer...">
                         </div>
                         <div class="col-2">
-                            <button style="float: left;" class="btn btn-primary"><i class="fas fa-arrow-circle-right"></i></button>
+                            <button onclick="addComment()" style="float: left;" class="btn btn-primary"><i class="fas fa-arrow-circle-right"></i></button>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-2 text-center">
-                            <img style="border-radius: 50%;float: right;" width="40px" height="40px" src="/backend/images/logo/fp.png" alt="">
-                        </div>
-                        <div class="col-10">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4>Marthin</h4>
-                                </div>
-                                <div class="col-12">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere eligendi sit aspernatur illo quisquam sed recusandae deleniti ad eaque pariatur aliquid unde laudantium voluptatem voluptate, officiis corrupti ducimus nostrum possimus.</p>
+                    <div id="load_komentar">
+                        <!-- <div class="row mt-2">
+                            <div class="col-2 text-center">
+                                <img style="border-radius: 50%;float: right;" width="40px" height="40px" src="/backend/images/logo/fp.png" alt="">
+                            </div>
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4>Marthin</h4>
+                                    </div>
+                                    <div class="col-12">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere eligendi sit aspernatur illo quisquam sed recusandae deleniti ad eaque pariatur aliquid unde laudantium voluptatem voluptate, officiis corrupti ducimus nostrum possimus.</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <br><br><br><br><br><br><br><br>
             </div>
             <div class="modal-footer">
                 <div class="row text-center" style="width: 100%;">
-                    <div class="col-4">
+                    <!-- <div class="col-4">
                         <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                    </div>
-                    <div class="col-4">
+                    </div> -->
+                    <div class="col-6">
                         <button onclick="$('#comment').focus();window.location.href='#label-comment'" class="btn btn-primary"><i class="fas fa-comment"></i></button>
                     </div>
-                    <div class="col-4">
-                        <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                    <div class="col-6">
+                        <button onclick="window.location.href= '/jobseeker/artikel_delete?id=<?= $a->id_artikel ?>'" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>
             </div>
@@ -294,6 +297,24 @@
     </div>
 </div>
 <script>
+    // add comment
+    function addComment() {
+        var comment = $('#comment').val();
+        var id_komentar = $('#id-artikel').text();
+        $.ajax({
+            url: '/jobseeker/comment',
+            data: {
+                komentar: comment,
+                id_komentar: id_komentar
+            },
+            method: 'get',
+            dataType: 'json',
+            success: function(u) {
+                $('#comment').val('');
+            }
+        });
+    }
+
     function tampilkomen(e) {
         var data_koment = e.getAttribute('data-koment');
         $.ajax({
@@ -310,19 +331,63 @@
                 $('.modal_pp').attr('title', f.name);
                 $('#modal_subject').text(f.subject);
                 $('#modal_description').html(f.description);
+                $('#id-artikel').text(f.id_artikel);
+
+                // untuk realtime komentar
+                $(document).ready(function() {
+                    selesay();
+                })
+            }
+        });
+    }
+
+    function selesay() {
+        const stop = setInterval(function() {
+            update();
+            // selesay();
+        }, 2000);
+        const tombol = document.getElementById('stop_interval');
+        tombol.addEventListener('click', function() {
+            clearInterval(stop);
+            // alert('selesay');
+        });
+    }
+
+    function update() {
+        var ia = $('#id-artikel').text();
+        $.ajax({
+            url: '/jobseeker/koments',
+            data: {
+                data_koment: ia
+            },
+            method: 'get',
+            dataType: 'json',
+            success: function(g) {
+                if (g != null) {
+                    // console.log(g);
+                    $('.ulang').remove();
+                    for (var h = 0; h < g.length; h++) {
+                        $('#load_komentar').append(`
+                            <div class="row mt-2 ulang">
+                                <div class="col-2 text-center">
+                                    <img style="border-radius: 50%;float: right;" width="40px" height="40px" src="/backend/images/faces/` + g[h].profile_picture + `" alt="">
+                                </div>
+                                <div class="col-10">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h4>` + g[h].name + `</h4>
+                                        </div>
+                                        <div class="col-12">
+                                            <h5>` + g[h].comment + `</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    };
+                }
             }
         });
     }
 </script>
-<!-- <script>
-    $(document).ready(function() {
-        selesai();
-    })
-
-    function selesay(){
-        setTimeout(function(data){
-            
-        });
-    }
-</script> -->
 @endsection

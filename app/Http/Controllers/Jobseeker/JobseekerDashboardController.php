@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Jobseeker;
 
 use App\Http\Controllers\Controller;
 use App\Models\artikel;
+use App\Models\comment;
 use App\Models\like_artikel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,10 @@ class JobseekerDashboardController extends Controller
 
     public function index(Request $req)
     {
+        $tas = new artikel();
+        // dd($tas->get());
         // untuk fitur comment
+        $comment = new comment();
         $like = new like_artikel;
         if (isset($req->suka)) {
             $dt_like = $like->where('user_id', '=', user()->id)->where('artikel_id', '=', $req->suka)->count();
@@ -59,6 +63,7 @@ class JobseekerDashboardController extends Controller
         $data = [
             'nav_tree' => $this->nav_tree,
             'like' => $like,
+            'comment' => $comment,
             'artikel' => $artikel->get()
         ];
 
@@ -89,5 +94,56 @@ class JobseekerDashboardController extends Controller
             ->select('users.*', 'artikels.*', 'jobseeker_details.*', 'users.id as id_user', 'artikels.id as id_artikel', 'jobseeker_details.id as id_jobseeker')
             ->first();
         return json_encode($result);
+    }
+
+    public function apiKomentar(Request $req)
+    {
+        $comment = new comment();
+        $artikel = new artikel();
+        $artikel_id = $req->data_koment;
+        if ($comment->where('artikel_id', '=', $artikel_id)->count() > 0) {
+            $result = $comment
+                ->join('artikels', 'comments.artikel_id', '=', 'artikels.id')
+                ->join('users', 'users.id', '=', 'artikels.user_id')
+                ->join('jobseeker_details', 'jobseeker_details.jobseeker_id', '=', 'users.id')
+                ->where('artikels.id', '=', $artikel_id)
+                ->select('users.*', 'artikels.*', 'jobseeker_details.*', 'users.id as id_user', 'artikels.id as id_artikel', 'jobseeker_details.id as id_jobseeker', 'comments.*', 'comments.id as id_comments')
+                ->orderByDesc('comments.id')
+                ->get();
+        } else {
+            $result = [null];
+        }
+        return json_encode($result);
+    }
+
+    public function addComment(Request $req)
+    {
+        $comment = new comment();
+        $komentar = $req->komentar;
+        $id_artikel = $req->id_komentar;
+        $comment->artikel_id = $id_artikel;
+        $comment->user_id = user()->id;
+        $comment->comment = $komentar;
+        $comment->save();
+        return true;
+    }
+
+    public function artikel_delete(Request $req)
+    {
+        $artikel = new artikel();
+        $comment = new comment();
+        $like = new like_artikel();
+
+        $artikel->where('id', '=', $req->id)->delete();
+
+        if ($comment->where('artikel_id', '=', $req->id)->count() > 0) {
+            $comment->where('artikel_id', '=', $req->id)->delete();
+        }
+
+        if ($like->where('artikel_id', '=', $req->id)->count() > 0) {
+            $like->where('artikel_id', '=', $req->id)->delete();
+        }
+
+        return redirect()->back();
     }
 }

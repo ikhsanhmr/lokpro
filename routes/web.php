@@ -80,6 +80,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/jobseeker/dashboard', [JobseekerDashboardController::class, 'index'])->name('jobseeker.dashboard');
         Route::post('/jobseeker/dashboard', [JobseekerDashboardController::class, 'postArtikel']);
         Route::get('/jobseeker/koment', [JobseekerDashboardController::class, 'apiArtikel']);
+        Route::get('/jobseeker/koments', [JobseekerDashboardController::class, 'apiKomentar']);
+        Route::get('/jobseeker/comment', [JobseekerDashboardController::class, 'addComment']);
+        Route::get('/jobseeker/artikel_delete', [JobseekerDashboardController::class, 'artikel_delete']);
     });
 });
 
