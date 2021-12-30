@@ -22,7 +22,7 @@
                                 <img style="border-radius: 50%;" src="/backend/images/faces/{{ jobseeker()->profile_picture }}" alt="" height="40px" width="40px">
                             </div>
                             <div class="col-10">
-                                <input onclick="$('#card-body1').removeAttr('style');$('#card-body2').attr('style', 'visibility: hidden;position: absolute;'); $('#subject').focus()" type="text" class="form-control" type="text" placeholder="Ketikan sesuatu..." readonly>
+                                <input onclick="$('#card-body1').removeAttr('style');$('#card-body2').attr('style', 'visibility: hidden;position: absolute;'); $('#subject').focus()" type="text" class="form-control" type="text" placeholder="Type Something..." readonly>
                             </div>
                             <div class="col-1">
                                 <div class="dropdown">
@@ -49,7 +49,7 @@
                                 <label class="form-label" for="Subject">Subject</label>
                             </div>
                             <div class="col-6">
-                                <button onclick="$('#card-body2').removeAttr('style');$('#card-body1').attr('style', 'visibility: hidden;position: absolute;')" style="float: right;" class="btn btn-transparent border-0"><i class="fas fa-times"></i></button>
+                                <button type="button" onclick="$('#card-body2').removeAttr('style');$('#card-body1').attr('style', 'visibility: hidden;position: absolute;')" style="float: right;" class="btn btn-transparent border-0"><i class="fas fa-times"></i></button>
                             </div>
                         </div>
                         <input style="box-shadow: none;" type="text" class="form-control" id="subject" name="subject" autofocus>
@@ -65,11 +65,11 @@
                         <textarea style="visibility: hidden;position: absolute;" name="description" id="description" cols="0" rows="0"></textarea>
                         <div class="row mt-2">
                             <div class="col-6">
-                                <button onclick="$('#foto_video').click()" type="button" class="btn btn-sm btn-success"><i class="fas fa-photo-video"></i> Foto/Video</button>
+                                <button type="button" onclick="$('#foto_video').click()" class="btn btn-sm btn-success"><i class="fas fa-photo-video"></i> Picture</button>
+                                <input type="file" style="visibility: hidden;position: absolute;" id="foto_video" name="foto_video">
                                 <div id="invalid-foto_video" style="visibility: hidden;position: absolute;">
                                     <li class="text-danger"></li>
                                 </div>
-                                <input type="file" style="visibility: hidden;" id="foto_video" name="foto_video" required>
                             </div>
                             <div class="col-6">
                                 <button onclick="return postnow()" type="submit" class="btn btn-sm btn-primary" style="float: right;"><i class="fas fa-paper-plane"></i> Post Now</button>
@@ -119,90 +119,210 @@
                         <input onclick="$('#card-body1').removeAttr('style');$('#card-body2').attr('style', 'visibility: hidden;position: absolute;'); $('#subject').focus()" type="text" class="form-control bg-transparent" placeholder="Ketikan Sesuatu..." readonly>
                     </div> -->
                 </div>
-                <?php $t = 0 ?>
-                @foreach($artikel as $a)
-                <div class="container">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-2 text-center">
-                                    <img style="border-radius: 50%;" src="/backend/images/faces/{{ $a->profile_picture }}" alt="" height="40px" width="40px">
+            </form>
+            <?php $t = 0 ?>
+            @foreach($artikel as $a)
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-2 text-center">
+                                <img style="border-radius: 50%;" src="/backend/images/faces/{{ $a->profile_picture }}" alt="" height="40px" width="40px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ $a->name }}">
+                            </div>
+                            <div class="col-8 text-center">
+                                <h3>{{ $a->name }}</h3>
+                            </div>
+                            <div class="col-2 text-center">
+                                <!-- <button class="btn btn-transparent"><i class="fas fa-ellipsis-v"></i></button> -->
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-transparent" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        @if($a->user_id == user()->id)
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-trash"></i>
+                                            <span style="margin-left: 15%;">Delete</span>
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-edit"></i>
+                                            <span style="margin-left: 15%;">Edit</span>
+                                        </a>
+                                        @endif
+                                        <a class="dropdown-item" data-koment="{{ $a->id_artikel }}" onclick="tampilkomen(this)" href="#" data-bs-toggle="modal" data-bs-target="#showartikel">
+                                            <i class="fas fa-eye"></i>
+                                            <span style="margin-left: 15%;">Show</span>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="col-8 text-center">
-                                    <h3>Marthin Alfreinsco Salakory</h3>
-                                </div>
-                                <div class="col-2 text-center">
-                                    <!-- <button class="btn btn-transparent"><i class="fas fa-ellipsis-v"></i></button> -->
-                                    <div class="dropdown">
-                                        <button type="button" class="btn btn-transparent" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            @if($a->user_id == user()->id)
-                                            <a class="dropdown-item" href="#">
-                                                <i class="fas fa-trash"></i>
-                                                <span style="margin-left: 15%;">Delete</span>
-                                            </a>
-                                            <a class="dropdown-item" href="#">
-                                                <i class="fas fa-edit"></i>
-                                                <span style="margin-left: 15%;">Edit</span>
-                                            </a>
-                                            @endif
-                                            <a class="dropdown-item" href="#">
-                                                <i class="fas fa-eye"></i>
-                                                <span style="margin-left: 15%;">Show</span>
-                                            </a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-12" style="text-align: center;">
+                                <a style="visibility: hidden;position: absolute;" class="full-foto" href="/backend/images/artikel/{{ $a->foto_video }}" target="_blank"></a>
+                                <img onclick="document.getElementsByClassName('full-foto')['<?= $t++ ?>'].click()" height="200px" width="200px" src="/backend/images/artikel/{{ $a->foto_video }}" alt="Articel">
+                            </div>
+                            <div class="col-lg-9 col-sm-12">
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <h5 style="margin-left: 2%;"><?= str_word_count($a->subject) > 10 ? substr($a->subject, 0, 80) . "<span style='cursor: pointer;'>[..]</span>" : $a->subject ?></h5>
+                                    </div>
+                                    <hr>
+                                    <div class="col-12" style="margin-top: -7%;">
+                                        <div style="line-height: 16px;" class="ql-editor" data-gramm="false" contenteditable="false" spellcheck="false" data-ms-editor="true">
+                                            <?= str_word_count($a->description) > 140 ? substr($a->description, 0, 312) . "<span style='cursor: pointer;'>[..]</span>" : $a->description ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-lg-3 col-sm-12" style="text-align: center;">
-                                    <a style="visibility: hidden;position: absolute;" class="full-foto" href="/backend/images/artikel/{{ $a->foto_video }}" target="_blank"></a>
-                                    <img onclick="document.getElementsByClassName('full-foto')['<?= $t++ ?>'].click()" height="200px" width="200px" src="/backend/images/artikel/{{ $a->foto_video }}" alt="Articel">
-                                </div>
-                                <div class="col-lg-9 col-sm-12">
-                                    <div class="row mt-2">
-                                        <div class="col-12">
-                                            <h5 style="margin-left: 2%;"><?= str_word_count($a->subject) > 10 ? substr($a->subject, 0, 80) . "<span style='cursor: pointer;'>[..]</span>" : $a->subject ?></h5>
-                                        </div>
-                                        <hr>
-                                        <div class="col-12" style="margin-top: -7%;">
-                                            <div style="line-height: 16px;" class="ql-editor" data-gramm="false" contenteditable="false" spellcheck="false" data-ms-editor="true">
-                                                <?= str_word_count($a->description) > 140 ? substr($a->description, 0, 312) . "<span style='cursor: pointer;'>[..]</span>" : $a->description ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                        <hr>
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <button type="button" class="btn btn-primary" onclick="
+                                        $.ajax({
+                                            url: '/jobseeker/dashboard',
+                                            data: {suka : <?= $a->id_artikel ?>},
+                                            method: 'get',
+                                            dataType: 'json',
+                                            success: function(dt) {
+                                                $('.suka<?= $a->id_artikel; ?>').text(dt);
+                                            }
+                                        });
+                                    ">
+                                    <i class="fas fa-thumbs-up"></i> <span class="suka<?= $a->id_artikel; ?>"><?= $like->where('like_artikels.artikel_id', '=', $a->id_artikel)->count(); ?></span>
+                                    <!-- <i class="far fa-thumbs-up"></i> -->
+                                </button>
                             </div>
-                            <hr>
-                            <div class="row text-center">
-                                <div class="col-4">
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-thumbs-up"></i> 11
-                                        <!-- <i class="far fa-thumbs-up"></i> -->
-                                    </button>
-                                </div>
-                                <div class="col-4">
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-comment"></i> 32
-                                    </button>
-                                </div>
-                                <div class="col-4">
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-share"></i>
-                                    </button>
-                                </div>
+                            <div class="col-4">
+                                <button type="button" data-koment="{{ $a->id_artikel }}" onclick="tampilkomen(this)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showartikel">
+                                    <i class="fas fa-comment"></i> 32
+                                </button>
+                            </div>
+                            <div class="col-4">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fas fa-share"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
-            </form>
+            </div>
+            @endforeach
             <!-- <button id="card-body2" onclick="$('#card-body1').removeAttr('style');$('#card-body2').attr('style', 'visibility: hidden;position: absolute;'); $('#subject').focus()" type="text" class="btn btn-primary btn-lg" style="position: fixed;border-radius: 50%;right: 15%;top: 2%;"><i class="fas fa-plus"></i></button>
             <button id="card-body2" type="text" class="btn btn-primary btn-lg" style="position: fixed;border-radius: 50%;right: 11%;top: 2%;"><i class="fas fa-ellipsis-v"></i></button> -->
         </div>
     </section>
 </div>
+<!-- Modal showartikel -->
+<div class="modal fade" id="showartikel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row" style="width: 100%;">
+                    <div class="col-2 text-center">
+                        <img class="mt-2 modal_pp" style="border-radius: 50%;" src="" alt="" height="40px" width="40px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">
+                    </div>
+                    <div class="col-8 text-center">
+                        <h3 id="modal_name" class="mt-2"></h3>
+                    </div>
+                    <div class="col-2 text-center">
+                        <button type="button" class="btn-close mt-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6" style="text-align: center;">
+                        <img id="modal_picture" height="400px" width="400px" src="" alt="article picture">
+                    </div>
+                    <div class="col-lg-8 col-sm-12">
+                        <h3 id="modal_subject"></h3>
+                        <div id="modal_description" style="line-height: 16px;" class="ql-editor" data-gramm="false" contenteditable="false" spellcheck="false" data-ms-editor="true">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <h3 id="label-comment">Komentar:</h3>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-2">
+                            <img class="modal_pp" style="float: right;border-radius: 50%;" width="40px" height="40px" src="" alt="">
+                        </div>
+                        <div class="col-8">
+                            <input id="comment" type="text" class="form-control" placeholder="Type your answer...">
+                        </div>
+                        <div class="col-2">
+                            <button style="float: left;" class="btn btn-primary"><i class="fas fa-arrow-circle-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2 text-center">
+                            <img style="border-radius: 50%;float: right;" width="40px" height="40px" src="/backend/images/logo/fp.png" alt="">
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4>Marthin</h4>
+                                </div>
+                                <div class="col-12">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere eligendi sit aspernatur illo quisquam sed recusandae deleniti ad eaque pariatur aliquid unde laudantium voluptatem voluptate, officiis corrupti ducimus nostrum possimus.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br><br><br><br><br><br><br>
+            </div>
+            <div class="modal-footer">
+                <div class="row text-center" style="width: 100%;">
+                    <div class="col-4">
+                        <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                    </div>
+                    <div class="col-4">
+                        <button onclick="$('#comment').focus();window.location.href='#label-comment'" class="btn btn-primary"><i class="fas fa-comment"></i></button>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function tampilkomen(e) {
+        var data_koment = e.getAttribute('data-koment');
+        $.ajax({
+            url: '/jobseeker/koment',
+            data: {
+                data_koment: data_koment
+            },
+            method: 'get',
+            dataType: 'json',
+            success: function(f) {
+                $('#modal_name').text(f.name);
+                $('#modal_picture').attr('src', '/backend/images/artikel/' + f.foto_video);
+                $('.modal_pp').attr('src', '/backend/images/faces/' + f.profile_picture);
+                $('.modal_pp').attr('title', f.name);
+                $('#modal_subject').text(f.subject);
+                $('#modal_description').html(f.description);
+            }
+        });
+    }
+</script>
+<!-- <script>
+    $(document).ready(function() {
+        selesai();
+    })
+
+    function selesay(){
+        setTimeout(function(data){
+            
+        });
+    }
+</script> -->
 @endsection

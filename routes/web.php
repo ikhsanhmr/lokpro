@@ -79,6 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
         // untuk dashboard
         Route::get('/jobseeker/dashboard', [JobseekerDashboardController::class, 'index'])->name('jobseeker.dashboard');
         Route::post('/jobseeker/dashboard', [JobseekerDashboardController::class, 'postArtikel']);
+        Route::get('/jobseeker/koment', [JobseekerDashboardController::class, 'apiArtikel']);
     });
 });
 
