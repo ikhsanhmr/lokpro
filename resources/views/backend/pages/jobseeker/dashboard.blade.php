@@ -18,9 +18,11 @@
                 <div class="card">
                     <div class="card-body" id="card-body2">
                         <div class="row">
+                            @if(jobseeker() != null)
                             <div class="col-1">
                                 <img style="border-radius: 50%;" src="/backend/images/faces/{{ jobseeker()->profile_picture }}" alt="" height="40px" width="40px">
                             </div>
+                            @endif
                             <div class="col-10">
                                 <input onclick="$('#card-body1').removeAttr('style');$('#card-body2').attr('style', 'visibility: hidden;position: absolute;'); $('#subject').focus()" type="text" class="form-control" type="text" placeholder="Type Something..." readonly>
                             </div>
@@ -288,9 +290,7 @@
                     <div class="col-6">
                         <button onclick="$('#comment').focus();window.location.href='#label-comment'" class="btn btn-primary"><i class="fas fa-comment"></i></button>
                     </div>
-                    <div class="col-6">
-                        <button onclick="window.location.href= '/jobseeker/artikel_delete?id=<?= $a->id_artikel ?>'" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                    </div>
+                    
                 </div>
             </div>
         </div>

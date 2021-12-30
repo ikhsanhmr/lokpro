@@ -22,52 +22,22 @@
             <div class="col-lg-8 posts-list">
                <div class="single-post">
                   <div class="feature-img">
-                     <img class="img-fluid" src="/frontend/img/blog/single_blog_1.png" alt="">
+                     <img class="img-fluid" src="/backend/images/artikel/{{ $artikel->foto_video }}" alt="" width="100%">
                   </div>
                   <div class="blog_details">
-                     <h2>Second divided from form fish beast made every of seas
-                        all gathered us saying he our
+                     <h2>{{ $artikel->subject }}
                      </h2>
                      <ul class="blog-info-link mt-3 mb-4">
-                        <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                        <li><a href="#"><i class="fa fa-user"></i>Kategori</a></li>
+                        <li><a href="#"><i class="fa fa-comments"></i>0 Comment</a></li>
                      </ul>
-                     <p class="excert">
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower
-                     </p>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower to actually sit through a
-                        self-imposed MCSE training. who has the willpower to actually
-                     </p>
-                     <div class="quote-wrapper">
-                        <div class="quotes">
-                           MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                           should have to spend money on boot camp when you can get the MCSE study materials yourself at
-                           a fraction of the camp price. However, who has the willpower to actually sit through a
-                           self-imposed MCSE training.
-                        </div>
+                     <div class="excert">
+                        {!! $artikel->description !!}
                      </div>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower
-                     </p>
-                     <p>
-                        MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-                        should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-                        fraction of the camp price. However, who has the willpower to actually sit through a
-                        self-imposed MCSE training. who has the willpower to actually
-                     </p>
                   </div>
                </div>
                <div class="navigation-top">
                   <div class="d-sm-flex justify-content-between text-center">
-                     <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-                        people like this</p>
                      <div class="col-sm-4 text-center my-2 my-sm-0">
                         <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                      </div>
@@ -82,74 +52,77 @@
                      <div class="row">
                         <div
                            class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                           @if($artikel_sebelumnya != null)
                            <div class="thumb">
-                              <a href="#">
-                                 <img class="img-fluid" src="/frontend/img/post/preview.png" alt="">
+                              <a href="/articel/{{ $artikel_sebelumnya->id }}">
+                                 <img class="img-fluid" src="/backend/images/artikel/{{ $artikel_sebelumnya->foto_video }}" alt="" style="width: 60px; height:60px; object-fit:cover;">
                               </a>
                            </div>
                            <div class="arrow">
-                              <a href="#">
+                              <a href="/articel/{{ $artikel_sebelumnya->id }}">
                                  <span class="lnr text-white ti-arrow-left"></span>
                               </a>
                            </div>
                            <div class="detials">
                               <p>Prev Post</p>
-                              <a href="#">
-                                 <h4>Space The Final Frontier</h4>
+                              <a href="/articel/{{ $artikel_sebelumnya->id }}">
+                                 <h4>{{ $artikel_sebelumnya->subject }}</h4>
                               </a>
                            </div>
+                           @endif
                         </div>
                         <div
                            class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                           @if($artikel_setelahnya != null)
                            <div class="detials">
                               <p>Next Post</p>
-                              <a href="#">
-                                 <h4>Telescopes 101</h4>
+                              <a href="/articel/{{ $artikel_setelahnya->id }}">
+                                 <h4>{{ $artikel_setelahnya->subject }}</h4>
                               </a>
                            </div>
                            <div class="arrow">
-                              <a href="#">
+                              <a href="/articel/{{ $artikel_setelahnya->id }}">
                                  <span class="lnr text-white ti-arrow-right"></span>
                               </a>
                            </div>
                            <div class="thumb">
-                              <a href="#">
-                                 <img class="img-fluid" src="/frontend/img/post/next.png" alt="">
+                              <a href="/articel/{{ $artikel_setelahnya->id }}">
+                                 <img class="img-fluid" src="/backend/images/artikel/{{ $artikel_setelahnya->foto_video }}" alt="" style="width: 60px; height:60px; object-fit:cover;">
                               </a>
                            </div>
+                           @endif
                         </div>
                      </div>
                   </div>
                </div>
                <div class="blog-author">
                   <div class="media align-items-center">
-                     <img src="/frontend/img/blog/author.png" alt="">
+                     <img src="/backend/images/faces/{{ $artikel->user->jobseekerDetail->profile_picture }}" alt="" style="object-fit: cover">
                      <div class="media-body">
                         <a href="#">
-                           <h4>Harvard milan</h4>
+                           <h4>{{ $artikel->user->name }}</h4>
                         </a>
-                        <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                           our dominion twon Second divided from</p>
+                        <p>{{ $artikel->user->jobseekerDetail->bio }}</p>
                      </div>
                   </div>
                </div>
                <div class="comments-area">
-                  <h4>05 Comments</h4>
+                  <h4>0 Comments</h4>
+                  @foreach ($komentars as $komentar)
                   <div class="comment-list">
                      <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
                            <div class="thumb">
-                              <img src="/frontend/img/comment/comment_1.png" alt="">
+                              <img src="/backend/images/faces/{{ $komentar->user->jobseekerDetail->profile_picture }}" alt="" style="width:70px; height:70px; object-fit:cover;">
                            </div>
                            <div class="desc">
                               <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+                                 {{ $komentar->comment }}
                               </p>
                               <div class="d-flex justify-content-between">
                                  <div class="d-flex align-items-center">
                                     <h5>
-                                       <a href="#">Emilly Blunt</a>
+                                       <a href="#">{{ $komentar->user->name }}</a>
                                     </h5>
                                     <p class="date">December 4, 2017 at 3:12 pm </p>
                                  </div>
@@ -161,58 +134,7 @@
                         </div>
                      </div>
                   </div>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="/frontend/img/comment/comment_2.png" alt="">
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="/frontend/img/comment/comment_3.png" alt="">
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                  @endforeach
                </div>
                <div class="comment-form">
                   <h4>Leave a Reply</h4>

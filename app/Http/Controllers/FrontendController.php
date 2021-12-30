@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\artikel;
+use App\Models\comment;
 use App\Models\Lamaran;
 use Illuminate\Http\Request;
 
@@ -32,11 +34,31 @@ class FrontendController extends Controller
 
     public function articel()
     {
-        return view('frontend.articel.articel');
+        $data = [
+            "artikels" => artikel::all(),
+        ];
+        return view('frontend.articel.articel', $data);
     }
 
-    public function detailsArticel()
+    public function detailsArticel(artikel $artikel)
     {
-        return view('frontend.articel.detail');
+        //mengambil data artikel sebelumnya dan artikel setelahnya (berdasarkan id)
+        if($artikel->id != 1) {
+            $artikel_sebelumnya = artikel::find($artikel->id - 1);
+        }
+        if ($artikel->id != artikel::count()) {
+            $artikel_setelahnya = artikel::find($artikel->id + 1);
+        }
+        //mengambil komentar
+        $komentar = comment::where('artikel_id', $artikel->id)->get();
+
+        $data = [
+            "artikel" => $artikel,
+            "artikel_sebelumnya" => $artikel_sebelumnya ?? null,
+            "artikel_setelahnya" => $artikel_setelahnya ?? null,
+            "komentars" => $komentar,
+            
+        ];
+        return view('frontend.articel.detail', $data);
     }
 }
