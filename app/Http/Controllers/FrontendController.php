@@ -6,6 +6,7 @@ use App\Models\artikel;
 use App\Models\comment;
 use App\Models\Lamaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
@@ -51,25 +52,16 @@ class FrontendController extends Controller
         }
         //mengambil komentar
         $komentar = comment::where('artikel_id', $artikel->id)->get();
+        //latest post
+        $latest_post = DB::table('artikels')->latest()->limit(5)->get();
 
-        //share
-        $shareComponent = \Share::page(
-            'http://127.0.0.1:8000/articel/' . $artikel->id,
-            'Share this post',
-        )
-        ->facebook()
-        ->twitter()
-        ->linkedin()
-        ->telegram()
-        ->whatsapp()        
-        ->reddit();
 
         $data = [
             "artikel" => $artikel,
             "artikel_sebelumnya" => $artikel_sebelumnya ?? null,
             "artikel_setelahnya" => $artikel_setelahnya ?? null,
             "komentars" => $komentar,
-            "shareComponent" => $shareComponent
+            "latest_post" => $latest_post
         ];
         return view('frontend.articel.detail', $data);
     }

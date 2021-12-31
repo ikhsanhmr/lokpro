@@ -137,79 +137,49 @@
                   </div>
                   @endforeach
                </div>
-               <div class="comment-form">
-                  <h4>Leave a Reply</h4>
-                  <form class="form-contact comment_form" id="commentForm" method="POST">
-                     @csrf
-                     <div class="row">
-                        <div class="col-12">
-                           <div class="form-group">
-                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                 placeholder="Write Comment"></textarea>
-                           </div>
-                        </div>
-                        <div class="col-sm-6">
-                           <div class="form-group">
-                              <input class="form-control" name="name" id="name" type="text" placeholder="Name">
-                           </div>
-                        </div>
-                        <div class="col-sm-6">
-                           <div class="form-group">
-                              <input class="form-control" name="email" id="email" type="email" placeholder="Email">
-                           </div>
-                        </div>
-                        <div class="col-12">
-                           <div class="form-group">
-                              <input class="form-control" name="website" id="website" type="text" placeholder="Website">
-                           </div>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
-                     </div>
-                  </form>
-               </div>
             </div>
             <div class="col-lg-4">
                <div class="blog_right_sidebar">
-                  <aside class="single_sidebar_widget post_category_widget">
-                     <h4 class="widget_title">Category</h4>
-                     <ul class="list cat-list">
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Resaurant food (37)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Travel news (10)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Modern technology (03)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Product</p>
-                              <p>(11)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Inspiration (21)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Health Care (21)</p>
-                           </a>
-                        </li>
-                     </ul>
-                  </aside>
+                  <div class="follow">
+                     <h4>Follow Us On</h4>
+                     <div class="row">
+                        <div class="col-6 mb-3">
+                              <a href="https://www.youtube.com/c/LokerProgrammer" class="btn btn-danger w-100">
+                                 <i class="fa fa-youtube text-light"></i>
+                                 <span class="text-light ml-2">Youtube</span>
+                              </a>
+                        </div>
+                        <div class="col-6 mb-3">
+                              <a href="https://www.instagram.com/loker.programmer/" class="btn btn-danger w-100" style="background-color: #AF1975!important">
+                                 <i class="fa fa-instagram text-light"></i>
+                                 <span class="text-light ml-2">Instagram</span>
+                              </a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="postingan mt-3">
+                     <h4>Latest Post</h4>
+                     @foreach ($latest_post as $post)
+                     <div class="card mb-3">
+                        <div class="card-header">
+                           {{ $post->subject }}
+                        </div>
+                        <div class="card-body">
+                           <div class="image">
+                              <img src="/backend/images/artikel/{{ $post->foto_video }}" alt="" width="100%" class="rounded" style="max-height: 200px; object-fit:cover">
+                           </div>
+                           <div class="teks">
+                              {!! Str::words($artikel->description,20); !!}
+                           </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-end">
+                           <a href="/artikel/{{ $post->id }}" class="btn btn-primary ms-auto" style="color: white!important">Read More</a>
+                        </div>
+                     </div>
+                     @endforeach
+                  </div>
                </div>
-            </div>
+           </div>
          </div>
       </div>
    </section>

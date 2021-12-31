@@ -264,18 +264,18 @@
                     </div>
                     <div id="load_komentar">
                         <!-- <div class="row mt-2">
-                            <div class="col-2 text-center">
-                                <img style="border-radius: 50%;float: right;" width="40px" height="40px" src="/backend/images/logo/fp.png" alt="">
-                            </div>
                             <div class="col-10">
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-12" style="text-align: right;">
                                         <h4>Marthin</h4>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12" style="text-align: right;">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere eligendi sit aspernatur illo quisquam sed recusandae deleniti ad eaque pariatur aliquid unde laudantium voluptatem voluptate, officiis corrupti ducimus nostrum possimus.</p>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-2 text-center">
+                                <img style="border-radius: 50%;float: left;" width="40px" height="40px" src="/backend/images/logo/fp.png" alt="">
                             </div>
                         </div> -->
                     </div>
@@ -367,23 +367,43 @@
                     // console.log(g);
                     $('.ulang').remove();
                     for (var h = 0; h < g.length; h++) {
-                        $('#load_komentar').append(`
-                            <div class="row mt-2 ulang">
-                                <div class="col-2 text-center">
-                                    <img style="border-radius: 50%;float: right;" width="40px" height="40px" src="/backend/images/faces/` + g[h].profile_picture + `" alt="">
-                                </div>
-                                <div class="col-10">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <h4>` + g[h].name + `</h4>
+                        if (g[h].user_id == <?= user()->id ?>) {
+                            $('#load_komentar').append(`
+                                <div class="row mt-2 ulang">
+                                    <div class="col-10">
+                                        <div class="row">
+                                            <div class="col-12" style="text-align: right;">
+                                                <h4>` + g[h].name + `</h4>
+                                            </div>
+                                            <div class="col-12" style="text-align: right;">
+                                                <h5>` + g[h].comment + `</h5>
+                                            </div>
                                         </div>
-                                        <div class="col-12">
-                                            <h5>` + g[h].comment + `</h5>
+                                    </div>
+                                    <div class="col-2 text-center">
+                                        <img style="border-radius: 50%;float: left;" width="40px" height="40px" src="/backend/images/faces/` + g[h].profile_picture + `" alt="">
+                                    </div>
+                                </div>
+                            `)
+                        } else {
+                            $('#load_komentar').append(`
+                                <div class="row mt-2 ulang">
+                                    <div class="col-2 text-center">
+                                        <img style="border-radius: 50%;float: right;" width="40px" height="40px" src="/backend/images/faces/` + g[h].profile_picture + `" alt="">
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4>` + g[h].name + `</h4>
+                                            </div>
+                                            <div class="col-12">
+                                                <h5>` + g[h].comment + `</h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        `);
+                            `)
+                        }
                     };
                 }
             }
