@@ -155,7 +155,7 @@
                                  <span class="text-light ml-2">Instagram</span>
                               </a>
                         </div>
-                     </div>
+                     </div> 
                   </div>
                   <div class="postingan mt-3">
                      <h4>Latest Post</h4>
