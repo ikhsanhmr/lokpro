@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Jobseeker;
 use App\Http\Controllers\Controller;
 use App\Models\artikel;
 use App\Models\comment;
+use App\Models\JobseekerDetail;
 use App\Models\like_artikel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,7 @@ class JobseekerDashboardController extends Controller
 
     public function index(Request $req)
     {
+        $jd = new JobseekerDetail();
         $tas = new artikel();
         // dd($tas->get());
         // untuk fitur comment
@@ -64,7 +66,8 @@ class JobseekerDashboardController extends Controller
             'nav_tree' => $this->nav_tree,
             'like' => $like,
             'comment' => $comment,
-            'artikel' => $artikel->get()
+            'artikel' => $artikel->get(),
+            'count_jd' => $jd->where('jobseeker_id', '=', user()->id)->count()
         ];
 
         return view("backend.pages.jobseeker.dashboard", $data);

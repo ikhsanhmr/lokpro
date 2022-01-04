@@ -19,14 +19,14 @@
                 <span>Dashboard</span>
             </a>
         </li>
-        
+
         {{-- <li class="sidebar-item ">
             <a href="/{{ user()->role }}/profile" class='sidebar-link'>
-                <i class="far fa-id-badge"></i>
-                <span>Profile</span>
-            </a>
+        <i class="far fa-id-badge"></i>
+        <span>Profile</span>
+        </a>
         </li> --}}
-        
+
         <li class="sidebar-item {{ nav_on(['Management']) }}">
             <a href="/{{ user()->role }}/Management" class='sidebar-link'>
                 <i class="fas fa-building"></i>
@@ -48,16 +48,35 @@
                 </li>
             </ul>
         </li>
+    </ul>
+    <ul class="menu">
+        <li class="sidebar-item ">
+            <a class="dropdown-item sidebar-link text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="bi bi-box-arrow-left text-danger"></i>
+                <span>Logout</span>
+            </a>
 
-        <li class="sidebar-item">
-            <form action="{{ route('logout') }}" method="post">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
-                <button type="submit" class='sidebar-link btn btn-transparent'>
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </button>
             </form>
         </li>
+    </ul>
+    <ul class="menu">
+        @if(user()->admin == 1 )
+        <li class="sidebar-title">Admin</li>
+        <li class="sidebar-item ">
+            <a class="dropdown-item sidebar-link" href="/company/users">
+                <i class="fas fa-users"></i>
+                <span>Manage Users</span>
+            </a>
+        </li>
+        <li class="sidebar-item ">
+            <a class="dropdown-item sidebar-link text-primary" href="/company/admin">
+                <i class="bi bi-box-arrow-right text-primary"></i>
+                <span>Sign in as a jobseeker</span>
+            </a>
+        </li>
+        @endif
     </ul>
 </div>
 </div>

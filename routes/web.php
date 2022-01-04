@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\company\DashboardController;
 use App\Http\Controllers\company\ProfilController;
 use App\Http\Controllers\PostingLowonganController;
@@ -7,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\company\AdminController as cadmin;
+use App\Http\Controllers\Jobseeker\AdminController as jadmin;
 use App\Http\Controllers\company\JobController;
 use App\Http\Controllers\FrontendController;
 
@@ -60,6 +63,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/company/Post_Job', [JobController::class, 'save_post']);
         Route::get('/company/job_detail', [JobController::class, 'job_detail']);
         Route::resource('/company/lowongan', PostingLowonganController::class);
+
+        // untuk admin
+        Route::get('/company/admin', [cadmin::class, 'index']);
+        Route::get('/company    /users', [UsersController::class, 'index']);
     });
 });
 
@@ -83,6 +90,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/jobseeker/koments', [JobseekerDashboardController::class, 'apiKomentar']);
         Route::get('/jobseeker/comment', [JobseekerDashboardController::class, 'addComment']);
         Route::get('/jobseeker/artikel_delete', [JobseekerDashboardController::class, 'artikel_delete']);
+
+        // untuk admin
+        Route::get('/jobseeker/admin', [jadmin::class, 'index']);
+        Route::get('/jobseeker/users', [UsersController::class, 'index']);
     });
 });
 

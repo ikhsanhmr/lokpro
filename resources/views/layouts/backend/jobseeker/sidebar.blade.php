@@ -12,6 +12,7 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
+                <li class="sidebar-title">Menu</li>
                 <li class="sidebar-item {{ $nav_tree=='jobseeker-dashboard'?'active':'' }}">
                     <a href="{{ route('jobseeker.dashboard') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
@@ -60,6 +61,24 @@
                         @csrf
                     </form>
                 </li>
+            </ul>
+
+            <ul class="menu">
+                @if(user()->admin == 1 )
+                <li class="sidebar-title">Admin</li>
+                <li class="sidebar-item ">
+                    <a class="dropdown-item sidebar-link" href="/jobseeker/users">
+                        <i class="fas fa-users"></i>
+                        <span>Manage Users</span>
+                    </a>
+                </li>
+                <li class="sidebar-item ">
+                    <a class="dropdown-item sidebar-link text-primary" href="/jobseeker/admin">
+                        <i class="bi bi-box-arrow-right text-primary"></i>
+                        <span>Sign in as a company</span>
+                    </a>
+                </li>
+                @endif
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
