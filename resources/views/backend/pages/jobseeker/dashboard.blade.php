@@ -327,7 +327,7 @@
             success: function(f) {
                 $('#modal_name').text(f.name);
                 $('#modal_picture').attr('src', '/backend/images/artikel/' + f.foto_video);
-                $('.modal_pp').attr('src', '/backend/images/faces/' + f.profile_picture);
+                $('.modal_pp').attr('src', '/backend/images/faces/<?= jobseeker()->profile_picture ?>');
                 $('.modal_pp').attr('title', f.name);
                 $('#modal_subject').text(f.subject);
                 $('#modal_description').html(f.description);
