@@ -35,7 +35,7 @@ Route::get('/', [FrontendController::class, 'index']);
 Route::get('/jobs', [FrontendController::class, 'jobs']);
 Route::get('/jobs/detail/{post:id}', [FrontendController::class, 'detailsJob']);
 Route::get('/articel', [FrontendController::class, 'articel']);
-Route::get('/articel/detail', [FrontendController::class, 'detailsArticel']);
+Route::get('/articel/{artikel:id}', [FrontendController::class, 'detailsArticel']);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::middleware('role:company')->group(function () {
